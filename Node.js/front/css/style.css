@@ -1,0 +1,1304 @@
+*::-webkit-scrollbar {
+	display: none;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	/* FONT */
+	--font: "Poppins", sans-serif;
+
+	/* COLORS */
+	--bg-color: #151320;
+	--conic-gradient: conic-gradient(
+		/*gradient arc-en-ciel pour le bouton Booster*/ #ff2e2e,
+		#ff831e,
+		#fcff51,
+		#58ff57,
+		#575fff,
+		#d257ff,
+		#ff57e5,
+		#ff1556
+	);
+}
+
+#booster {
+	text-align: center;
+	pointer-events: all;
+	width: 90%;
+	height: 90%;
+	font-family: HARRYP;
+	font-size: 3rem;
+}
+
+body {
+	font-family: "Arial", sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #250000;
+	width: 100%;
+}
+#title {
+	color: whitesmoke;
+	font-family: HARRYP;
+	font-size: 3rem;
+	padding: 1%;
+}
+
+div {
+	min-width: 150px;
+}
+
+.intro {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2%;
+	padding: 2%;
+	margin-bottom: 2%;
+	background-color: ghostwhite;
+	border-radius: 30px;
+	font-size: 1.5rem;
+	text-align: center;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	border: 10px solid white;
+}
+.intro p {
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+main div img {
+	width: 100%;
+}
+.containfront {
+	justify-self: center;
+	width: 80%;
+}
+.frontimage {
+	border-radius: 5vw;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+form {
+	padding: 1%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 10px;
+}
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 20%;
+	border-radius: 5vw;
+	background-color: darkgray;
+	width: 69%;
+	border: 5px solid white;
+}
+.form input {
+	width: 50%;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 0.5%;
+}
+#submit {
+	width: 20%;
+}
+#submitted {
+	text-align: center;
+	width: 90%;
+}
+header {
+	background-color: #141414;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+header div {
+	display: flex;
+	justify-content: space-between;
+}
+.logoimg {
+	display: flex;
+	width: 100%;
+}
+.logo {
+	width: 10%;
+}
+select {
+	width: 50%;
+	border-radius: 10px;
+	padding: 1%;
+}
+
+option {
+	padding: 10%;
+}
+
+#showCard {
+	display: flex;
+	justify-content: center;
+}
+
+#submitExchange {
+	width: 40%;
+	padding: 1%;
+}
+
+#submitcard {
+	width: 40%;
+	padding: 1%;
+}
+
+.cardbuttons {
+	align-self: center;
+	display: flex;
+	height: 20%;
+	width: 80%;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.h_container {
+	min-width: 0;
+	background-color: #383838;
+	border-radius: 20px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+	width: 36px;
+	height: 36px;
+	text-align: center;
+	line-height: 45px;
+	padding: 1%;
+	margin: 1%;
+	transition: all 0.5s;
+}
+
+#cooldownText {
+	color: white;
+	font-size: 1rem;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.h_container:hover,
+	.h_container:active {
+		opacity: 0.7;
+		transform: scale(1.1);
+	}
+}
+
+.x_container {
+	min-width: 0;
+	background-color: #383838;
+	border-radius: 20px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+	width: 36px;
+	height: 36px;
+	text-align: center;
+	line-height: 45px;
+	padding: 1%;
+	margin: 1%;
+	transition: all 0.5s;
+}
+@media (hover: hover) and (pointer: fine) {
+	.x_container:hover,
+	.x_container:active {
+		opacity: 0.7;
+		transform: scale(1.1);
+	}
+}
+#x {
+	align-self: flex-end;
+	color: white;
+	font-size: 25px;
+}
+@media (hover: hover) and (pointer: fine) {
+	#x:hover,
+	#x:active {
+		color: grey;
+	}
+}
+
+#heart {
+	align-self: flex-end;
+	color: white;
+	font-size: 25px;
+}
+@media (hover: hover) and (pointer: fine) {
+	#heart:hover,
+	#x:active {
+		color: grey;
+	}
+}
+
+.favorited {
+	background-color: rgb(231, 0, 0);
+}
+
+header form input {
+	font-size: max(2vw, 1.1rem);
+	border-radius: 10px;
+	margin: 10px;
+	padding: 10px;
+	border: 0.25rem solid grey;
+	transition: all 0.3s ease-in-out;
+	font-family: HARRYP;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	header form input:hover,
+	header form input:active {
+		opacity: 0.9;
+		transform: scale(1.1);
+	}
+}
+nav {
+	padding: 5px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+#nav {
+	background-image: url(https://r4.wallpaperflare.com/wallpaper/932/891/825/hogwarts-legacy-video-games-dragon-owl-harry-potter-hd-wallpaper-9846ad3860f06c28e07ce1ae58d2244a.jpg);
+	background-size: cover;
+	background-position-y: 22%;
+	box-shadow: 0 0 1em inset;
+}
+nav h3 {
+	justify-self: center;
+}
+nav input {
+	font-size: large;
+	padding: 2%;
+	border-radius: 10px;
+	height: 2vw;
+	width: 30vw;
+	min-width: 200px;
+	min-height: 30px;
+}
+
+.navsearch {
+	background-color: #530000;
+	color: white;
+	justify-content: space-evenly;
+	align-items: center;
+	box-shadow: 0 0 1em inset black;
+}
+nav a {
+	font-family: HARRYP;
+	font-size: 2rem;
+	text-shadow: 0px 0px 5px #000;
+	color: white;
+	text-decoration: none;
+	padding: 10px;
+	margin: 10px 10px;
+	box-shadow: 0px 0px 10px #000000;
+	transition: all 0.5s;
+	border-radius: 10px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	nav a:hover,
+	nav a:active {
+		opacity: 0.9;
+		background-color: #000000;
+		transform: scale(1.1);
+	}
+}
+
+.boostercontainer {
+	pointer-events: none;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20vw;
+	height: 6em;
+	border-radius: 20px;
+	box-shadow: 0 1em 1em 0.1em rgba(0, 0, 0, 0.5);
+	position: relative;
+	overflow: hidden; /*pour cacher le reste du gradient arc-en-ciel*/
+
+	transition: transform 0.3s ease;
+}
+
+.boostercontainer::before {
+	overflow: hidden;
+	content: "";
+	position: absolute;
+	top: -150px;
+	width: 450%;
+	height: 450%;
+	background: var(--conic-gradient); /*le background arc en ciel*/
+	animation: spin 1.5s infinite linear; /*on lance l'animation qui fait tourner le fond arc-en-ciel*/
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.boostercontainer:hover,
+	.boostercontainer:active {
+		transform: scale(1.1);
+	}
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg); /*animation qui fait tourner*/
+	}
+}
+
+nav button {
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	background-color: rgb(255, 27, 95);
+	border-radius: 20px;
+	transition: all 0.5s;
+	box-shadow: 0 0 5em black;
+}
+
+nav button:after {
+	content: "";
+	position: absolute;
+	top: -120%;
+	left: -210%; /*positions de départ de l'effet shiny*/
+	width: 230%;
+	height: 230%;
+	opacity: 0; /*on le cache tant qu'on ne survole pas le bouton*/
+	background: linear-gradient(
+		/*un gradient transparent qui va donner un effet shiny sur le bouton quand on le survole*/
+			to right,
+		rgba(255, 255, 255, 0.13) 0%,
+		rgba(255, 255, 255, 0.13) 77%,
+		rgba(255, 255, 255, 0.5) 92%,
+		rgba(255, 255, 255, 0) 100%
+	);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	nav button:hover:after,
+	nav button:active::after {
+		transform: rotate(0deg) scale(1.1);
+		opacity: 1; /*on le fait apparaître*/
+		top: -30%;
+		left: -30%; /*position de fin de l'effet shiny*/
+		transition-property: left, top, opacity;
+		transition-duration: 0.7s, 0.7s, 0.15s;
+		transition-timing-function: ease-in-out;
+	}
+}
+
+.modal-content {
+	border-radius: 50px;
+}
+
+.modal-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5%;
+	box-shadow: 0 0 0px 10px rgb(60, 0, 0);
+}
+.modal-header div {
+	min-width: 0;
+}
+.modal-header h2 {
+	padding-left: 40px;
+}
+.modal-body {
+	border-radius: 50px;
+}
+
+.modal-footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	height: 50px;
+	box-shadow: 0 0 0px 10px rgb(60, 0, 0);
+}
+
+main {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	padding-top: 20px;
+	margin-bottom: 50px;
+	background-color: #250000;
+}
+
+.cardContainer {
+	color: white;
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.cardContainer h2 {
+	font-size: 3rem;
+	font-family: HARRYP;
+	margin-top: 100%;
+	margin-bottom: 100%;
+}
+
+.textcard {
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height: 50%;
+	color: #000;
+}
+
+.houses {
+	width: 90%;
+	padding-top: 0.1%;
+	padding-bottom: 0.1%;
+	background-color: #530000;
+	border: 5px solid #000;
+	border-radius: 30px;
+	margin-bottom: 1%;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+.houses button {
+	font-family: HARRYP;
+	font-size: 2.5rem;
+	padding: 2%;
+	min-width: 100px;
+	width: 17%;
+	border-radius: 30px;
+	transition: all 0.2s;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.houses button:hover,
+	.houses button:active {
+		opacity: 0.8;
+	}
+}
+
+h1 {
+	font-family: HARRYP;
+	font-size: 3rem;
+}
+.back {
+	padding: 5%;
+	background-color: gray;
+	border-radius: 30px;
+	margin-top: 1%;
+}
+.single {
+	background-color: whitesmoke;
+	justify-self: center;
+	width: 80%;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+	padding: 2%;
+	font-size: 1.5em;
+	color: #0c0c0c;
+	margin-top: 3%;
+}
+.card {
+	align-items: center;
+	border: solid black;
+	width: 350px;
+	height: 600px;
+	background-color: rgb(255, 255, 255);
+	margin: 1vw;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-direction: column;
+	opacity: 0;
+}
+
+.card.fade {
+	animation: fade 0.5s ease-in; /*animation pour faire fade in les cartes*/
+	opacity: 1;
+}
+
+.card.appear {
+	opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	button:hover,
+	button:active {
+		transform: scale(1.069);
+	}
+}
+
+a {
+	color: #000;
+}
+
+#common {
+	background-color: whitesmoke;
+}
+#rare {
+	background-color: pink;
+}
+#legendary {
+	background-color: goldenrod;
+}
+
+#mythical {
+	background-repeat: repeat;
+	background: linear-gradient(
+		/*un gradient arc en ciel linéaire pour les cartes mythiques*/ 90deg,
+		rgba(255, 0, 0, 1) 0%,
+		rgba(255, 154, 0, 1) 10%,
+		rgba(208, 222, 33, 1) 20%,
+		rgba(79, 220, 74, 1) 30%,
+		rgba(63, 218, 216, 1) 40%,
+		rgba(47, 201, 226, 1) 50%,
+		rgba(28, 127, 238, 1) 60%,
+		rgba(95, 21, 242, 1) 70%,
+		rgba(186, 12, 248, 1) 80%,
+		rgba(251, 7, 217, 1) 90%,
+		rgba(255, 0, 0, 1) 100%
+	);
+	transition: all 1s ease;
+	animation: Mythic 3s linear running infinite; /*on lance l'animation des cartes mythiques*/
+}
+
+@keyframes Mythic {
+	from {
+		filter: drop-shadow(
+			0 0 10px white
+		); /*le drop shadow donne un effet de pulsation de lumière*/
+		background-position: 0 0; /*position de départ de l'arc-en-ciel*/
+	}
+	to {
+		filter: drop-shadow(0 0 0px white);
+		background-position: 390px 390px; /*position de fin de l'arc-en-ciel*/
+	}
+}
+
+.imgcard {
+	position: relative;
+	background-image: url(https://i.pinimg.com/564x/b9/fe/77/b9fe773abc3ece92bd13d77507e3f783.jpg);
+	background-size: cover;
+	background-position-y: center;
+	height: 50%;
+	width: 100%;
+	display: flex;
+
+	outline: double black 0.7rem;
+	border-radius: 10px;
+}
+.normalimgcontainer {
+	position: relative;
+	background-image: url(https://i.pinimg.com/564x/b9/fe/77/b9fe773abc3ece92bd13d77507e3f783.jpg);
+	background-blend-mode: multiply;
+	background-size: cover;
+	background-position-y: center;
+	width: 90%;
+	outline: double black 0.7rem;
+	border-radius: 10px;
+}
+
+.normalimg {
+	margin-bottom: -5px;
+}
+
+.imgcard a {
+	width: 100%;
+	border-radius: 10px;
+}
+.cardimg {
+	position: absolute;
+	object-position: bottom;
+	bottom: 0;
+	height: 110%;
+	width: 100%;
+	object-fit: contain;
+	border-radius: 10px;
+	transition: all 0.25s ease-in-out;
+}
+
+.cardimg:hover,
+.cardimg:active {
+	transform: scale(1.05);
+	filter: drop-shadow(0 0 10px white);
+}
+
+@font-face {
+	font-family: HARRYP; /*on crée une police Harry Potter*/
+	src: url("HARRYP__.TTF");
+}
+
+.card h2 {
+	font-family: HARRYP;
+	font-size: 3.2rem;
+	margin-top: 15px;
+	margin-bottom: -10px;
+	text-shadow: 2px 2px 2px #ffffff;
+}
+
+.card h3 {
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+	padding: 2%;
+	font-size: 0.9em;
+	color: #0c0c0c;
+}
+
+#character {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	width: 35%;
+	background-color: #fafafa;
+	border-radius: 5vw;
+	text-align: center;
+	padding: 1%;
+	font-size: 0.7rem;
+}
+#character h1 {
+	margin-bottom: 3%;
+}
+
+#character img {
+	width: 50%;
+}
+
+.menu a {
+	background-color: #410000;
+}
+@media (hover: hover) and (pointer: fine) {
+	.logoimg:hover,
+	.logoimg:active {
+		transform: scale(1.05);
+	}
+}
+footer {
+	position: fixed;
+	background-color: #333;
+	color: white;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	bottom: 0;
+	width: 100%;
+	z-index: 2;
+}
+
+.floating-button {
+	text-align: center;
+	font-size: 1.5rem;
+	position: fixed; /* le bouton restera à la même position sur l'écran peu importe la scrollbar*/
+	bottom: 70px;
+	left: 40px;
+	background-color: #8f0000;
+	color: white;
+	border: 0.25rem solid black;
+	padding: 10px 10px;
+	border-radius: 50%;
+	cursor: pointer;
+	width: 120px;
+	height: 120px;
+	box-shadow: 2px 2px 3px #000000;
+	transition: 0.3s all ease-in-out;
+	z-index: 3; /*il doit être au dessus de la plupart des autres éléments*/
+}
+@media (hover: hover) and (pointer: fine) {
+	.floating-button:hover,
+	.floating-button:active {
+		background-color: #c95050;
+	}
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 4; /*le modal doit être au dessus de tous les éléments*/
+	padding-top: 0px;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: scroll; /*on fait en sorte de pouvoir scroll même si le modal dépasse la hauteur de la page*/
+	transition: 0.5s all ease-in-out;
+	background-color: rgba(0, 0, 0, 0.8);
+	animation-name: fade;
+	animation-duration: 0.4s;
+}
+@keyframes fade {
+	from {
+		opacity: 0;
+	} /*animation de fade*/
+	to {
+		opacity: 1;
+	}
+}
+.modal-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 0;
+	width: 80%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	animation-name: animatetop; /*animation du modal depuis le haut de l'écran*/
+	animation-duration: 0.4s;
+}
+
+@keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0;
+	} /*animation qui commence en dehors du haut de l'écran*/
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+
+.close {
+	color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modal-header {
+	justify-content: space-around;
+	display: flex;
+	padding: 2px 16px;
+	background-color: #530000;
+	color: white;
+}
+
+.modal-body {
+	padding: 2px 16px;
+}
+
+.modal-footer {
+	padding: 2px 16px;
+	background-color: #530000;
+	color: white;
+}
+
+.Gryffindor {
+	background-color: #940a24;
+}
+.Slytherin {
+	background-color: #015c4b;
+}
+.Hufflepuff {
+	background-color: #fdb53d;
+	color: black;
+}
+.Ravenclaw {
+	background-color: #23326e;
+	color: black;
+}
+.None {
+	background-color: #61003d;
+	color: white;
+}
+.CommonSort {
+	background-color: grey;
+}
+.RareSort {
+	background-color: pink;
+}
+.LegendarySort {
+	background-color: goldenrod;
+}
+.MythicSort {
+	background-color: rgb(5, 238, 255);
+}
+
+@media screen and (max-width: 1000px) {
+	.houses button {
+		font-size: 2rem;
+	}
+}
+@media screen and (max-width: 900px) {
+	/*pour le responsive, le css qui suit s'applique seulement aux petits écrans*/
+	#logobi {
+		display: block;
+	}
+	.intro {
+		font-size: 1rem;
+	}
+	.boostercontainer {
+		width: 40%;
+	}
+	nav input {
+		font-size: 1rem;
+	}
+	.menuout {
+		padding-top: 175px;
+	}
+	#character {
+		width: 50%;
+	}
+	@keyframes Mythic {
+		from {
+			filter: drop-shadow(
+				0 0 10px white
+			); /*la même animation qu'auparavant, mais une position différente car les cartes sont plus petites*/
+			background-position: 0 0;
+		}
+		to {
+			filter: drop-shadow(0 0 0px white);
+			background-position: 195px 195px;
+		}
+	}
+
+	#title {
+		font-size: 2rem;
+	}
+	.x_container {
+		height: 30px;
+		width: 30px;
+		line-height: 35px;
+	}
+	#x {
+		font-size: 20px;
+	}
+	.h_container {
+		height: 30px;
+		width: 30px;
+		line-height: 35px;
+	}
+	#heart {
+		font-size: 20px;
+	}
+	.imgcard {
+		margin-top: 5px;
+		width: 140px;
+		height: 120px;
+		border-radius: 10px;
+	}
+	h1 {
+		font-size: 2rem;
+	}
+	single {
+		font-size: 1rem;
+	}
+	.modal {
+		padding-top: 0px;
+	}
+	.modal-content {
+		top: 0;
+		position: relative;
+		background-color: #fefefe;
+		margin: auto;
+		padding: 0;
+		width: 80%;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		animation-name: animatetop;
+		animation-duration: 0.4s;
+	}
+
+	#booster {
+		font-size: 2rem;
+	}
+	.houses button {
+		font-size: 1.5rem;
+	}
+	.textcard {
+		width: 100%;
+		margin-top: 55px;
+		height: 25%;
+	}
+	.card {
+		position: relative;
+		border: solid black;
+		width: 175px;
+		height: 300px;
+		background-color: rgb(255, 255, 255);
+		margin: 0.01vw;
+		padding: 10px;
+		border-radius: 10px;
+	}
+	.card h2 {
+		position: absolute;
+		font-family: HARRYP;
+		font-size: 1.5rem;
+		top: 132px;
+		text-shadow: 1px 1px 2px #ffffff;
+	}
+
+	.card h3 {
+		font-size: 0.8rem;
+		margin-bottom: 5px;
+		margin-top: 6px;
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.logregi:hover,
+		.logregi:active {
+			transform: scale(1.1);
+		}
+	}
+
+	.logregi {
+		font-family: HARRYP;
+	}
+
+	footer {
+		position: relative;
+		background-color: #333;
+		color: white;
+		text-align: center;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		bottom: 0;
+		width: 100%;
+	}
+
+	.floating-button {
+		font-size: 1rem;
+		bottom: 20px;
+		left: 10px;
+		border: 0.25rem solid black;
+		padding: 10px 10px;
+		width: 90px;
+		height: 90px;
+		box-shadow: 2px 2px 3px #000000;
+	}
+
+	.burger {
+		min-width: 0;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.burger-icon {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		min-width: 0;
+		cursor: pointer;
+		margin-top: 50%;
+		margin-bottom: 10%;
+	}
+	*[href$=".html" i] {
+		display: none;
+	}
+
+	.bar {
+		min-width: 0;
+		width: 100%;
+		height: 15px;
+		background-color: rgb(255, 255, 255);
+		margin-top: 15%;
+		transition: 0.4s;
+		border-radius: 5px;
+		filter: drop-shadow(0 0 5px black);
+	}
+
+	.menu {
+		padding: 0px;
+		list-style-type: none;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.5s ease-in;
+	}
+	.menu.active {
+		padding-top: 10px;
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		/* top: 23px; */
+		top: 0vw;
+		left: 0;
+		width: 100%;
+		background-color: #250000;
+		box-shadow: 0px 0px 0px 3px rgb(17, 0, 0) inset;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.x_container {
+		font-size: 0.5rem;
+		line-height: 35px;
+		width: 26px;
+		height: 26px;
+	}
+	.h_container {
+		font-size: 0.5rem;
+		line-height: 35px;
+		width: 26px;
+		height: 26px;
+	}
+	footer {
+		font-size: 0.8rem;
+	}
+	header form input {
+		font-size: 0.9rem;
+	}
+	.intro {
+		font-size: 0.8rem;
+	}
+	.boostercontainer {
+		width: 30%;
+	}
+	.floating-button {
+		font-size: 0.6rem;
+		height: 69px;
+		width: 69px;
+	}
+	.round-time-bar div {
+		width: 90vw;
+	}
+	.imgcard {
+		outline: double black 0.35rem;
+	}
+	.menuout {
+		padding-top: 200px;
+	}
+	#character {
+		width: 80%;
+	}
+	@keyframes Mythic {
+		from {
+			background-position: 0 0;
+			filter: drop-shadow(0 0 10px white);
+		}
+		to {
+			background-position: 140px 140px; /*la même animation qu'auparavant, mais une position différente car les cartes sont plus petites*/
+			filter: drop-shadow(0 0 0px white);
+		}
+	}
+	.bar {
+		width: 50%;
+		height: 9px;
+		background-color: rgb(255, 255, 255);
+		margin-top: 12%;
+		transition: 0.4s;
+		border-radius: 5px;
+	}
+	.logo {
+		width: 30%;
+	}
+	#title {
+		font-size: 1.5rem;
+	}
+	.imgcard {
+		width: 100px;
+		height: 80px;
+	}
+	.card {
+		border: solid black;
+		width: 120px;
+		height: 200px;
+		background-color: rgb(255, 255, 255);
+		margin: 0.01vw;
+		padding: 10px;
+		border-radius: 10px;
+	}
+	.card h2 {
+		font-family: HARRYP;
+		font-size: 1.1rem;
+		top: 86px;
+	}
+	.card h3 {
+		font-size: 0.5rem;
+		margin-top: 1px;
+	}
+	.textcard {
+		width: 100%;
+		margin-top: 35px;
+		height: 25%;
+	}
+}
+.card.cardbooster.fade {
+	/*css spécifique pour avoir la bonne priorité*/
+	animation: cardBooster 3s ease-in-out; /*lance l'animation d'ouverture de booster pour la carte*/
+	transition: all 0.3s ease-in-out;
+	z-index: 1; /*passe au dessus des autres cartes*/
+}
+.card.cardbooster.appear {
+	/*pareil qu'au dessus*/
+	animation: cardBooster 3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	z-index: 1;
+}
+
+#mythical.cardbooster {
+	/*pareil pour les cartes mythiques*/
+	animation: MythicCardBooster 3s ease-in-out; /*lance l'animation d'ouverture de booster pour la carte mythique*/
+	transition: all 0.3s ease-in-out;
+	z-index: 1;
+}
+
+.round-time-bar {
+	display: block;
+	margin: 0.5rem;
+	overflow: hidden;
+}
+.round-time-bar div {
+	border: 2px solid white;
+	border-radius: 5px;
+	width: 30vw;
+	height: 10px;
+	animation: roundtime calc(var(--duration) * 1s) linear forwards; /*lance l'animation de la barre cooldown d'ouverture de booster. Le calc calcule la duration de l'animation en fonction de --duration.*/
+	transform-origin: left center;
+	background: linear-gradient(to bottom, rgb(255, 0, 93), rgb(255, 93, 206));
+}
+
+@keyframes roundtime {
+	to {
+		transform: scaleX(
+			0
+		); /*animation qui réduit la taille horizontale de la barre cooldown à 0*/
+	}
+}
+
+@keyframes MythicCardBooster {
+	/*animation d'ouverture de booster de carte*/
+	0% {
+		position: fixed; /*position fixe sur l'écran*/
+		transform: scale(0.5); /*commence moitié taille*/
+		top: -100vh; /*commence en dehors de l'écran*/
+	}
+	30% {
+		transform: scale(1.1); /*on fait grossir la carte*/
+		top: 5vh; /*on bouge la carte au centre de l'écran*/
+	}
+	60% {
+		transform: scale(0.9);
+		top: 15vh;
+	}
+	80% {
+		position: fixed;
+		top: 100vh; /*on fait sortie la carte de l'écran par le bas*/
+		transform: scale(0.5); /*on rapetisse la carte*/
+		opacity: 1;
+	}
+	81% {
+		opacity: 0; /*on fait disparaître la carte*/
+	}
+	82% {
+		top: 0;
+		position: relative; /*on remet la carte à sa position relative comme les autres cartes*/
+	}
+	100% {
+		opacity: 1; /*on fait apparaître la carte*/
+		transform: scale(1); /*on lui donne sa taille normale*/
+	}
+	from {
+		filter: drop-shadow(0 0 10px white);
+		background-position: 0 0; /*on anime également le fond arc-en-ciel*/
+	}
+	to {
+		filter: drop-shadow(0 0 0px white);
+		background-position: 390px 390px;
+	}
+}
+
+@keyframes cardBooster {
+	/*même animation que la précédente mais sans le fond animé ou le glow*/
+	0% {
+		position: fixed;
+		transform: scale(0.5);
+		top: -100vh;
+	}
+	30% {
+		position: fixed;
+		transform: scale(1.1);
+		top: 5vh;
+	}
+	60% {
+		position: fixed;
+		transform: scale(0.9);
+		top: 15vh;
+	}
+	80% {
+		position: fixed;
+		top: 100vh;
+		transform: scale(0.5);
+		opacity: 1;
+	}
+	81% {
+		opacity: 0;
+	}
+	82% {
+		top: 0;
+		position: relative;
+	}
+	100% {
+		opacity: 1;
+		position: relative;
+		transform: scale(1);
+	}
+}
+
+.hide {
+	display: block; /*fait apparaître le menu hamburger*/
+}
+
+.menu {
+	display: flex;
+	justify-content: start;
+	align-items: start;
+}
+
+#menu {
+	display: flex;
+	align-items: center;
+}
+
+.containfront {
+	perspective: 2000px; /*perspective pour l'image de la front page*/
+	transform-style: preserve-3d;
+}
+.frontimage {
+	background-color: #fff;
+	transition: transform 0.15s;
+}
+
+.deadgebutton {
+	background-color: gray;
+	pointer-events: none; /*enlève la possibilité de cliquer sur l'objet*/
+}
+#boostercontainer::before .deadgebutton {
+	background-color: gray;
+	animation: none;
+}
+#booster.deadgebutton {
+	pointer-events: none;
+}
+.deadgebutton:before {
+	pointer-events: none;
+	animation: none;
+	opacity: 0;
+}
+
+@media screen and (min-width: 1500px) {
+	.boostercontainer::before {
+		height: 50vw;
+		width: 50vw;
+		top: -400px;
+	}
+}

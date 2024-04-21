@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<script
+			src="https://kit.fontawesome.com/3929e16ef5.js"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://kit.fontawesome.com/2e477fa156.js"
+			crossorigin="anonymous"></script>
+		<title>Harry Potter</title>
+		<link
+			rel="stylesheet"
+			href="css/style.css" />
+	</head>
+
+	<body id="body">
+		<header>
+			<a
+				href="index.html"
+				class="logo"
+				id="logobi">
+				<img
+					class="logoimg"
+					src="images/picmix.com_968628.png"
+					alt="" />
+			</a>
+			<h1 id="title">My Cards</h1>
+			<div>
+				<form
+					class="logregi"
+					id="register"
+					action="register.html">
+					<input
+						type="submit"
+						value="Register" />
+				</form>
+				<form
+					class="logregi"
+					id="login"
+					action="login.html">
+					<input
+						type="submit"
+						value="Login" />
+				</form>
+				<form
+					class="logregi"
+					id="logout"
+					action="#">
+					<input
+						type="submit"
+						value="Logout" />
+					<p id="welcomeusername"></p>
+				</form>
+			</div>
+		</header>
+		<div
+			class="modal"
+			id="modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div></div>
+					<h2>Trading Interface</h2>
+					<span class="close">&times;</span>
+				</div>
+				<div class="modal-body">
+					<form>
+						<label for="cardchoose">Choose a card:</label>
+						<select
+							id="cardchoose"
+							name="cars">
+							<option value="card">Card</option>
+						</select>
+						<input
+							id="submitcard"
+							type="submit"
+							value="Show" />
+					</form>
+					<div id="showCard"></div>
+
+					<form>
+						<label for="userschoose">Choose some user to trade with:</label>
+						<select
+							name="users"
+							id="userschoose">
+							<option value="Slapilou">Slapilou</option>
+						</select>
+						<input
+							type="submit"
+							id="submitExchange"
+							value="Confirm" />
+					</form>
+				</div>
+				<div class="modal-footer">
+					<h3>Footer</h3>
+				</div>
+			</div>
+		</div>
+		<nav id="nav">
+			<div class="burger-menu">
+				<div
+					class="burger-icon"
+					id="burgericon">
+					<div class="bar"></div>
+					<div class="bar"></div>
+					<div class="bar"></div>
+				</div>
+				<ul
+					class="menu"
+					id="menu">
+					<a
+						href="index.html"
+						id="home"
+						>Home</a
+					>
+					<a
+						href="mycards.html"
+						id="mycards"
+						>My Cards</a
+					>
+					<a
+						href="collection.html"
+						id="archive"
+						>Card Archive</a
+					>
+					<a
+						href="profile.html"
+						id="profile"
+						>Profile</a
+					>
+				</ul>
+			</div>
+		</nav>
+		<nav class="navsearch">
+			<input
+				type="search"
+				name="search"
+				id="search"
+				placeholder="search here" />
+			<div
+				id="boostercontainer"
+				class="boostercontainer">
+				<button id="booster">
+					<p>Booster</p>
+					<p id="cooldownText">Cooldown</p>
+				</button>
+			</div>
+			<div
+				id="cdbar"
+				class="round-time-bar"
+				style="--duration: 0">
+				<div></div>
+			</div>
+		</nav>
+
+		<main id="main">
+			<div class="houses">
+				<button
+					type="button"
+					data-="sortbutton"
+					id="Gryffindor">
+					Gryffindor
+				</button>
+				<button
+					type="button"
+					data-="sortbutton"
+					id="Hufflepuff">
+					Hufflepuff
+				</button>
+				<button
+					type="button"
+					data-="sortbutton"
+					id="Slytherin">
+					Slytherin
+				</button>
+				<button
+					type="button"
+					data-="sortbutton"
+					id="Ravenclaw">
+					Ravenclaw
+				</button>
+				<button
+					type="button"
+					data-="sortbutton"
+					id="None">
+					None
+				</button>
+			</div>
+			<div class="houses">
+				<button
+					type="button"
+					data-="sortbutton"
+					id="MythicSort">
+					Mythical
+				</button>
+				<button
+					type="button"
+					data-="sortbutton"
+					id="LegendarySort">
+					Legendary
+				</button>
+				<button
+					type="button"
+					data-="sortbutton"
+					id="RareSort">
+					Rare
+				</button>
+				<button
+					type="button"
+					data-="sortbutton"
+					id="CommonSort">
+					Common
+				</button>
+			</div>
+			<div
+				id="cardContainer"
+				class="cardContainer"></div>
+		</main>
+
+		<footer>&copy; 2024 Slapilou Harry Potter Card Website</footer>
+
+		<button
+			class="floating-button"
+			id="floating-button">
+			Trading
+		</button>
+
+		<script src="https://cdn.jsdelivr.net/npm/set-interval-async"></script>
+		<script
+			type="module"
+			src="https:/unpkg.com/delay"></script>
+
+		<script
+			type="module"
+			src="scriptmycards.js"></script>
+
+		<script src="loggedIn.js"></script>
+		<script src="modalTrade.js"></script>
+		<script src="burgerIcon.js"></script>
+	</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="css/style.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<header>
+			<a
+				href="index.html"
+				class="logo"
+				id="logobi">
+				<img
+					class="logoimg"
+					src="images/picmix.com_968628.png"
+					alt="" />
+			</a>
+			<h1 id="title">Character Card</h1>
+			<div>
+				<form action="register.html">
+					<input
+						type="submit"
+						value="Register" />
+				</form>
+				<form action="login.html">
+					<input
+						type="submit"
+						value="Login" />
+				</form>
+			</div>
+		</header>
+		<div
+			class="modal"
+			id="modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div></div>
+					<h2>Trading Interface</h2>
+					<span class="close">&times;</span>
+				</div>
+				<div class="modal-body">
+					<form>
+						<label for="cardchoose">Choose a card:</label>
+						<select
+							id="cardchoose"
+							name="cars">
+							<option value="card">Card</option>
+						</select>
+						<input
+							id="submitcard"
+							type="submit"
+							value="Show" />
+					</form>
+					<div id="showCard"></div>
+
+					<form>
+						<label for="userschoose">Choose some user to trade with:</label>
+						<select
+							name="users"
+							id="userschoose">
+							<option value="Slapilou">Slapilou</option>
+						</select>
+						<input
+							type="submit"
+							id="submitExchange"
+							value="Confirm" />
+					</form>
+				</div>
+				<div class="modal-footer">
+					<h3>Footer</h3>
+				</div>
+			</div>
+		</div>
+		<nav id="nav">
+			<div class="burger-menu">
+				<div
+					class="burger-icon"
+					id="burgericon">
+					<div class="bar"></div>
+					<div class="bar"></div>
+					<div class="bar"></div>
+				</div>
+				<ul
+					class="menu"
+					id="menu">
+					<a
+						href="index.html"
+						id="home"
+						>Home</a
+					>
+					<a
+						href="mycards.html"
+						id="mycards"
+						>My Cards</a
+					>
+					<a
+						href="collection.html"
+						id="archive"
+						>Card Archive</a
+					>
+					<a
+						href="profile.html"
+						id="profile"
+						>Profile</a
+					>
+				</ul>
+			</div>
+		</nav>
+
+		<main>
+			<div id="character"></div>
+		</main>
+
+		<footer>&copy; 2024 Slapilou Harry Potter Card Website</footer>
+
+		<button
+			class="floating-button"
+			id="floating-button">
+			Trading
+		</button>
+
+		<script src="single.js"></script>
+		<script src="burgerIcon.js"></script>
+		<script src="modalTrade.js"></script>
+	</body>
+</html>
