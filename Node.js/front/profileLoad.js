@@ -8,6 +8,10 @@ const getProfile = async () => {
 	});
 
 	const data = await response.json();
+	let last_active = data.last_active
+		.toString()
+		.replace(/T/, " ")
+		.replace(/\..+/, "");
 	let creationDate = data.created_at
 		.toString()
 		.replace(/T/, " ")
@@ -20,8 +24,12 @@ const getProfile = async () => {
                 <img class ="normalimg" src=""></img>
             </a>
         </div>
+		<h2 class="single">User ID: ${data.id}</h2>
         <h2 class="single">Email: ${data.email}</h2>
+		<h2 class="single">Last Active: ${last_active}</h2>
         <h2 class="single">Creation Date: ${creationDate}</h2>
+		<h2 class="single">Pity: ${data.pity}</h2>
+
     `;
 };
 if (localStorage.getItem("token") === null) {
