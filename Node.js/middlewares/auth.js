@@ -13,7 +13,10 @@ class AuthMiddleware {
 		jsonwebtoken.verify(token, process.env.JWT_SECRET, async (err, payload) => {
 			console.log(err);
 
-			if (err) return res.sendStatus(403);
+			if (err)
+				return res.status(403).send({
+					message: err.message,
+				});
 
 			const email = payload.email;
 

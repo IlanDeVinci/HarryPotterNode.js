@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "delay": "^6.0.0",
     "express": "^4.19.2",
+    "ip": "^2.0.1",
     "jsonwebtoken": "^9.0.2",
     "set-interval-async": "^3.0.3"
   },

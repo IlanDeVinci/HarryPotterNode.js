@@ -15,7 +15,17 @@ let id;
 let cards;
 let setIntervalAsync = SetIntervalAsync.setIntervalAsync;
 let pity;
-const getProfile = async () => {
+let cardsPerBooster = 5;
+let boosterDuration = cardsPerBooster * 3000 + 1000;
+let userList = [];
+let filteredCharacters = [];
+let filteredSortedList = [];
+let searchString = "";
+let currentFilter = "none";
+let currentRarity = "none";
+
+window.getProfile = async function getProfile() {
+	userList = [];
 	const token = localStorage.getItem("token");
 
 	const response = await fetch("http://localhost:3000/getMyProfile", {
@@ -104,33 +114,6 @@ if (localStorage.getItem("token") === null) {
 }
 const cardContainer = document.getElementById("cardContainer");
 
-let modal = document.getElementById("modal");
-//on récupère le bouton pour faire apparaître le modal
-document
-	.getElementById("floating-button")
-	.addEventListener("click", function () {
-		modal.style.display = "block";
-	});
-
-//le modal disparaît si on clique sur la croix
-document.querySelector("span").addEventListener("click", function () {
-	modal.style.display = "none";
-	displayRare();
-});
-
-//le modal disparaît si on clique en dehors
-window.onclick = function (event) {
-	if (event.target == modal) {
-		modal.style.display = "none";
-		displayRare();
-	}
-};
-
-let userList = [];
-let filteredCharacters = [];
-let filteredSortedList = [];
-let searchString = "";
-
 //fonctionnement de la barre de recherche dynamique
 let searchBar = document.getElementById("search");
 searchBar.addEventListener("input", (e) => {
@@ -147,7 +130,13 @@ searchBar.addEventListener("input", (e) => {
 			);
 		}
 	});
-	sortList(filteredCharacters);
+	if (filteredCharacters.length > 0) {
+		sortList(filteredCharacters);
+	} else {
+		cardContainer.innerHTML = `
+        <h2>No cards</h2>
+        `;
+	}
 });
 
 //la fonction suivante filtre la liste de personnage en fonction de la barre de recherche et du filtre de maison
@@ -321,7 +310,7 @@ boosterb.addEventListener("click", async function () {
 		cdBar.classList.remove("round-time-bar");
 		cdBar.offsetWidth;
 		cdBar.classList.add("round-time-bar");
-		cdBar.style = "--duration: 10;"; //on lui donne une duration de 10 secondes
+		cdBar.style = `--duration: ${boosterDuration / 1000};`; //on lui donne une duration de 10 secondes
 		searchBar.disabled = true; //on rend inutilisable la barre de recherche
 		setTimeout(() => {
 			//ce set timeout va réinitialiser le cooldown et va rendre les boutons et la barre de recherche utilisables après 10 secondes
@@ -331,13 +320,13 @@ boosterb.addEventListener("click", async function () {
 				element.classList.remove("deadgebutton");
 			});
 			document.querySelector("#booster").classList.add("deadgebutton");
-		}, 10000);
+		}, boosterDuration);
 		userList.forEach((element) => {
 			element.isnew = "no"; //ajoute l'attribut isnew=no à toutes les anciennes cartes(nécessaire pour attribuer les animations)
 		});
 		const BoostOpen = async () => {
 			let sleeptime = 0;
-			for (let i = 0; i < 3; i++) {
+			for (let i = 0; i < cardsPerBooster; i++) {
 				await setAsyncTimeout(() => {
 					sleeptime = 3000;
 					// on met un délai de 3 secondes à chaque animation et création de carte
@@ -389,7 +378,7 @@ boosterb.addEventListener("click", async function () {
 		});
 		sortChars(userList);
 		boosting = false;
-	}, 9050);
+	}, boosterDuration - 950);
 });
 
 //displayChar crée les cartes de chaque personnage
@@ -436,7 +425,6 @@ const displayChar = (characters) => {
 			ciao(this);
 		});
 	});
-	displayRare();
 	for (let i = 0; i < favNumber; i++) {
 		//on fait apparaître les favoris sur les cartes en rouge en fonction du nombre de favoris
 		document.getElementById(`heartc${i}`).classList.toggle("favorited");
@@ -474,11 +462,6 @@ function clearUserlist() {
 }
 
 //fonction qui donne les bonnes classes aux cartes pour qu'elles aient la bonne couleur en fonction de la rareté
-function displayRare() {
-	document.querySelectorAll("#mythical").forEach((element) => {
-		element.classList.toggle("mythical");
-	});
-}
 
 //fonction qui va donner un attribut delete si on appuie sur le bouton supprimer d'une carte
 function ciao(element) {
@@ -523,9 +506,6 @@ function sortUserlist() {
 	favNumber = favList.length; //calcule le nombre de cartes mises en favori pour l'affichage
 	userList = favList.concat(nonFavList); //crée une nouvelle liste à partir de la liste des favoris et des non-favoris pour avoir l'ordre
 }
-
-let currentFilter = "none";
-let currentRarity = "none";
 
 //cette fonction change le thème du site et le filtre de maison des cartes
 function changeTheme(name) {
@@ -610,15 +590,15 @@ async function initCards() {
 	const setCards = async function () {
 		if (cards.length > 0) {
 			await Promise.all(
-				cards.map(async (card) => {
+				cards.map((card) => {
 					let cardObject = card;
 					let hpListCharacter = hpList.filter((element) => {
 						return element.name == cardObject.name;
 					});
-					cardObject.actor = await hpListCharacter[0].actor;
-					cardObject.house = await hpListCharacter[0].house;
-					cardObject.image = await hpListCharacter[0].image;
-					cardObject.slug = await hpListCharacter[0].slug;
+					cardObject.actor = hpListCharacter[0].actor;
+					cardObject.house = hpListCharacter[0].house;
+					cardObject.image = hpListCharacter[0].image;
+					cardObject.slug = hpListCharacter[0].slug;
 					cardObject.isnew = "no";
 					userList.push(cardObject);
 				})
@@ -630,8 +610,6 @@ async function initCards() {
 	userList.reverse();
 	sortChars(userList);
 	sortUserlist();
-	displayRare();
-	console.log(userList);
 }
 //on initialise à 0 la pity garantie
 

@@ -48,10 +48,6 @@ body {
 	padding: 1%;
 }
 
-div {
-	min-width: 150px;
-}
-
 .intro {
 	display: flex;
 	flex-direction: column;
@@ -194,6 +190,11 @@ option {
 		opacity: 0.7;
 		transform: scale(1.1);
 	}
+}
+
+form a:hover {
+	color: #ffffff;
+	transition: all 0.2s ease-in-out;
 }
 
 .x_container {
@@ -403,6 +404,7 @@ nav button:after {
 }
 
 .modal-header {
+	margin-top: 2%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -420,6 +422,8 @@ nav button:after {
 }
 
 .modal-footer {
+	margin-bottom: 2%;
+	margin-top: 5%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -439,7 +443,8 @@ main {
 	background-color: #250000;
 }
 
-.cardContainer {
+.cardContainer,
+.tradingCardContainer {
 	color: white;
 	position: relative;
 	display: flex;
@@ -517,7 +522,7 @@ h1 {
 }
 .card {
 	align-items: center;
-	border: solid black;
+	border: 3px solid whitesmoke;
 	width: 350px;
 	height: 600px;
 	background-color: rgb(255, 255, 255);
@@ -560,10 +565,21 @@ a {
 	background-color: goldenrod;
 }
 
-#mythical {
+.legendary {
+	background-color: goldenrod;
+}
+
+.rare {
+	background-color: pink;
+}
+
+#receiverchoose {
+	width: 80%;
+}
+.mythical {
 	background-repeat: repeat;
 	background: linear-gradient(
-		/*un gradient arc en ciel linéaire pour les cartes mythiques*/ 90deg,
+		/*un gradient arc en ciel linéaire pour les cartes mythiques*/ to right,
 		rgba(255, 0, 0, 1) 0%,
 		rgba(255, 154, 0, 1) 10%,
 		rgba(208, 222, 33, 1) 20%,
@@ -576,6 +592,31 @@ a {
 		rgba(251, 7, 217, 1) 90%,
 		rgba(255, 0, 0, 1) 100%
 	);
+	background-size: 200% 200%;
+	transition: all 1s ease;
+	animation: Mythic 3s linear running infinite; /*on lance l'animation des cartes mythiques*/
+}
+option#mythical {
+	background-color: rgb(5, 238, 255);
+}
+
+#mythical {
+	background-repeat: repeat;
+	background: linear-gradient(
+		/*un gradient arc en ciel linéaire pour les cartes mythiques*/ to right,
+		rgba(255, 0, 0, 1) 0%,
+		rgba(255, 154, 0, 1) 10%,
+		rgba(208, 222, 33, 1) 20%,
+		rgba(79, 220, 74, 1) 30%,
+		rgba(63, 218, 216, 1) 40%,
+		rgba(47, 201, 226, 1) 50%,
+		rgba(28, 127, 238, 1) 60%,
+		rgba(95, 21, 242, 1) 70%,
+		rgba(186, 12, 248, 1) 80%,
+		rgba(251, 7, 217, 1) 90%,
+		rgba(255, 0, 0, 1) 100%
+	);
+	background-size: 200% 200%;
 	transition: all 1s ease;
 	animation: Mythic 3s linear running infinite; /*on lance l'animation des cartes mythiques*/
 }
@@ -585,11 +626,11 @@ a {
 		filter: drop-shadow(
 			0 0 10px white
 		); /*le drop shadow donne un effet de pulsation de lumière*/
-		background-position: 0 0; /*position de départ de l'arc-en-ciel*/
 	}
+
 	to {
-		filter: drop-shadow(0 0 0px white);
-		background-position: 390px 390px; /*position de fin de l'arc-en-ciel*/
+		filter: drop-shadow(0 0 1px white);
+		background-position: -200% 0; /*position de fin de l'arc-en-ciel*/
 	}
 }
 
@@ -726,6 +767,145 @@ footer {
 	}
 }
 
+.tab-content {
+	margin-top: 1%;
+	margin-bottom: 1%;
+	text-align: center;
+	h1 {
+		margin-top: 2%;
+		margin-bottom: 2%;
+	}
+}
+
+.tab_buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.tab-button {
+	background-color: rgb(84, 0, 0);
+	color: white;
+	padding: 10px 20px;
+	margin: 0 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.tab-button:hover {
+	background-color: #8b0000;
+}
+
+.tab-button.active {
+	background-color: #ff4b4b;
+}
+
+.trade {
+	width: 90%;
+	margin-right: 2%;
+	margin-left: 2%;
+	color: rgb(0, 0, 0);
+	display: grid;
+	overflow: hidden;
+	grid-auto-flow: column;
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-columns: repeat(2, 33.3%);
+	margin-bottom: 10px;
+	padding: 10px;
+	background-color: #cecece;
+	border-radius: 50px;
+	border: solid 0.3rem black;
+	padding: 2%;
+}
+.trade div {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	border-radius: 20px;
+}
+
+.trade p {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+	border-radius: 20px;
+}
+.trade .user {
+	font-weight: bold;
+}
+
+.trade .normalsender,
+.trade .receive {
+	font-weight: bold;
+	border: solid 0.15rem rgb(81, 0, 0);
+}
+
+.trade .normalreceiver,
+.trade .sender {
+	font-weight: bold;
+	border: solid 0.15rem rgb(255, 255, 255);
+}
+
+.trade .card {
+	margin-right: 10px;
+}
+
+.trade .buttons {
+	display: flex;
+	justify-content: center;
+}
+
+.trade .buttons button:last-child {
+	margin-right: 0;
+}
+
+.trade .buttons button.accept {
+	background-color: #00ab00;
+}
+
+.trade .buttons button.cancel {
+	background-color: #500000;
+}
+
+.trade .buttons button.decline {
+	background-color: #bc0000;
+}
+
+.trade .buttons button.accept:hover {
+	background-color: #00d500;
+}
+
+.trade .buttons button.cancel:hover {
+	background-color: #850000;
+}
+.trade .buttons button.decline:hover {
+	background-color: #cc0000;
+}
+
+.trade .buttons button.accept:active {
+	background-color: #00aa00;
+}
+
+.trade .buttons button.decline:active {
+	background-color: #aa0000;
+}
+
+.trade .buttons button {
+	padding: 5px;
+	margin-right: 10px;
+	border: solid 0.2rem black;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
 .modal {
 	display: none;
 	position: fixed;
@@ -793,7 +973,7 @@ footer {
 }
 
 .modal-body {
-	padding: 2px 16px;
+	padding: 0;
 }
 
 .modal-footer {
@@ -857,18 +1037,6 @@ footer {
 	}
 	#character {
 		width: 50%;
-	}
-	@keyframes Mythic {
-		from {
-			filter: drop-shadow(
-				0 0 10px white
-			); /*la même animation qu'auparavant, mais une position différente car les cartes sont plus petites*/
-			background-position: 0 0;
-		}
-		to {
-			filter: drop-shadow(0 0 0px white);
-			background-position: 195px 195px;
-		}
 	}
 
 	#title {
@@ -984,8 +1152,11 @@ footer {
 		box-shadow: 2px 2px 3px #000000;
 	}
 
+	.burger-menu {
+		width: 20%;
+		display: block;
+	}
 	.burger {
-		min-width: 0;
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
@@ -996,7 +1167,6 @@ footer {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		min-width: 0;
 		cursor: pointer;
 		margin-top: 50%;
 		margin-bottom: 10%;
@@ -1006,7 +1176,6 @@ footer {
 	}
 
 	.bar {
-		min-width: 0;
 		width: 100%;
 		height: 15px;
 		background-color: rgb(255, 255, 255);
@@ -1039,6 +1208,9 @@ footer {
 }
 
 @media screen and (max-width: 500px) {
+	.burger-menu {
+		width: 50%;
+	}
 	.x_container {
 		font-size: 0.5rem;
 		line-height: 35px;
@@ -1080,19 +1252,9 @@ footer {
 	#character {
 		width: 80%;
 	}
-	@keyframes Mythic {
-		from {
-			background-position: 0 0;
-			filter: drop-shadow(0 0 10px white);
-		}
-		to {
-			background-position: 140px 140px; /*la même animation qu'auparavant, mais une position différente car les cartes sont plus petites*/
-			filter: drop-shadow(0 0 0px white);
-		}
-	}
 	.bar {
 		width: 50%;
-		height: 9px;
+		height: 12px;
 		background-color: rgb(255, 255, 255);
 		margin-top: 12%;
 		transition: 0.4s;
@@ -1132,6 +1294,62 @@ footer {
 		height: 25%;
 	}
 }
+
+@keyframes slideDown {
+	0% {
+		transform: translate(-50%, -300px);
+	}
+
+	100% {
+		transform: translate(-50%, 100%);
+	}
+}
+
+@keyframes slideUp {
+	0% {
+		transform: translate(-50%, 100%);
+	}
+	100% {
+		transform: translate(-50%, -300px);
+	}
+}
+
+.popup {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 15%;
+	background-color: #6f0000;
+	border-radius: 20px;
+	border: solid 0.4rem whitesmoke;
+	width: 50%;
+	position: fixed;
+	top: -20%;
+	left: 50%;
+	transform: translate(-50%, 100%);
+	font-size: 2rem;
+	padding: 2%;
+	z-index: 10;
+}
+.popup.show {
+	display: flex;
+	animation: slideDown 1.5s ease-out forwards;
+}
+.popup.hide {
+	display: flex;
+	animation: slideUp 1s ease-in-out forwards;
+}
+
+.popup.gone {
+	display: none;
+}
+
+.youtraded {
+	font-size: 2rem;
+	padding: 2%;
+}
+
 .card.cardbooster.fade {
 	/*css spécifique pour avoir la bonne priorité*/
 	animation: cardBooster 3s ease-in-out; /*lance l'animation d'ouverture de booster pour la carte*/
@@ -1142,24 +1360,30 @@ footer {
 	/*pareil qu'au dessus*/
 	animation: cardBooster 3s ease-in-out;
 	transition: all 0.3s ease-in-out;
-	z-index: 1;
+	z-index: 10;
 }
 
 #mythical.cardbooster {
 	/*pareil pour les cartes mythiques*/
 	animation: MythicCardBooster 3s ease-in-out; /*lance l'animation d'ouverture de booster pour la carte mythique*/
 	transition: all 0.3s ease-in-out;
-	z-index: 1;
+	z-index: 10;
 }
 
+#cdbar {
+	border: 2px rgb(255, 255, 255) solid;
+	border-radius: 5px;
+	width: 30vw;
+	height: 10px;
+	display: flex;
+}
 .round-time-bar {
 	display: block;
 	margin: 0.5rem;
 	overflow: hidden;
 }
 .round-time-bar div {
-	border: 2px solid white;
-	border-radius: 5px;
+	border-radius: 3px;
 	width: 30vw;
 	height: 10px;
 	animation: roundtime calc(var(--duration) * 1s) linear forwards; /*lance l'animation de la barre cooldown d'ouverture de booster. Le calc calcule la duration de l'animation en fonction de --duration.*/
@@ -1169,9 +1393,11 @@ footer {
 
 @keyframes roundtime {
 	to {
+		/*
 		transform: scaleX(
 			0
 		); /*animation qui réduit la taille horizontale de la barre cooldown à 0*/
+		width: 0;
 	}
 }
 
@@ -1213,7 +1439,7 @@ footer {
 	}
 	to {
 		filter: drop-shadow(0 0 0px white);
-		background-position: 390px 390px;
+		background-position: -200% 0;
 	}
 }
 

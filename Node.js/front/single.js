@@ -35,39 +35,17 @@ async function displayCharacter() {
 
         <a class="back hide" href="javascript: history.go(-1)">Back</a>
     `;
+	postToRaspberry(data.house);
+	document.getElementById("pagetitle").innerHTML = data.name;
+}
+
+async function postToRaspberry(house) {
+	const data = await fetch("http://localhost:3000/", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ house: house }),
+	});
 }
 displayCharacter();
-
-let modal = document.getElementById("modal");
-//on récupère le bouton pour faire apparaître le modal
-document
-	.getElementById("floating-button")
-	.addEventListener("click", function () {
-		modal.style.display = "block";
-	});
-
-//le modal disparaît si on clique sur la croix
-document.querySelector("span").addEventListener("click", function () {
-	modal.style.display = "none";
-});
-
-//le modal disparaît si on clique en dehors
-window.onclick = function (event) {
-	if (event.target == modal) {
-		modal.style.display = "none";
-	}
-};
-
-//on récupère le menu burger pour les petits écrans
-const burgerIcon = document.getElementById("burgericon");
-const menu = document.getElementById("menu");
-//on récupère le menu burger pour les petits écrans
-
-burgerIcon.addEventListener("click", function () {
-	//quand on clique sur le burger, ça ajoute/retire des classes pour faire apparaître/disparaître le menu
-	burgerIcon.classList.toggle("menuout");
-	menu.classList.toggle("active");
-	document.getElementById("home").classList.toggle("hide");
-	document.getElementById("mycards").classList.toggle("hide");
-	document.getElementById("archive").classList.toggle("hide");
-});

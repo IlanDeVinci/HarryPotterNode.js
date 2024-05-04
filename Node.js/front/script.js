@@ -7,7 +7,7 @@ let searchBar = document.getElementById("search");
 searchBar.addEventListener("input", (e) => {
 	const searchString = e.target.value.toLowerCase();
 	//searchstring contient l'input de l'utilisateur
-	const filteredCharacters = hpList.filter((character) => {
+	const filteredCharacters = hpList1.filter((character) => {
 		//filteredcharacters est la nouvelle liste de personnages filtrée
 		return (
 			character.name.toLowerCase().includes(searchString) ||
@@ -15,7 +15,13 @@ searchBar.addEventListener("input", (e) => {
 			//on renvoie seulement dans la liste filtrée les personnages dont le nom ou la maison contient l'input de l'utilisateur
 		);
 	});
-	displayCharacters(filteredCharacters);
+	if (filteredCharacters.length > 0) {
+		displayCharacters(filteredCharacters);
+	} else {
+		cardContainer.innerHTML = `
+        <h2>No cards</h2>
+        `;
+	}
 });
 
 let hpCharacters1 = [];
@@ -96,7 +102,7 @@ function changeTheme(name) {
 		document.getElementById("main").classList.toggle(currentFilter);
 		document.getElementById("body").classList.toggle(currentFilter);
 	}
-	displayCharacters(hpList); //actualise la liste des personnages
+	displayCharacters(hpList1); //actualise la liste des personnages
 }
 
 //ajoute une fonction qui s'exécute lorsqu'on clique un des boutons filtres

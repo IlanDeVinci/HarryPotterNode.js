@@ -3,8 +3,14 @@ const { hashPassword } = require("../utils/bcrypt");
 
 class UsersController {
 	async getMyProfile(req, res) {
-		const user = req.user;
-		return res.status(200).send(user);
+		try {
+			const user = req.user;
+			return res.status(200).send(user);
+		} catch (error) {
+			return res.status(500).send({
+				error: "User not found",
+			});
+		}
 	}
 	//app.get(/users)
 	async index(req, res) {
@@ -39,12 +45,14 @@ class UsersController {
 	//app.get (/users/:id)
 	async show(req, res) {
 		try {
-			const id = req.params.id;
+			const id = parseInt(req.params.id);
 			const user = await prisma.user.findUnique({
-				where: { id: parseInt(id) },
+				where: { id: id },
 			});
 			if (user === null) {
-				return res.status(404).send("User not found");
+				return res.status(404).send({
+					error: "User not found",
+				});
 			}
 			return res.status(200).send(user);
 		} catch (error) {
@@ -57,10 +65,20 @@ class UsersController {
 	async update(req, res) {
 		try {
 			const id = req.params.id;
+			let hashedPassword = null;
+			if (req.body.password !== undefined) {
+				hashedPassword = await hashPassword(req.body.password);
+			}
 			let user = await prisma.user.update({
 				where: { id: parseInt(id) },
 				data: req.body,
 			});
+			if (hashedPassword !== null) {
+				user = await prisma.user.update({
+					where: { id: parseInt(id) },
+					data: { password: hashedPassword },
+				});
+			}
 			if (user === null) {
 				return res.status(404).send("User not found");
 			}

@@ -3,6 +3,7 @@ const UsersController = require("../controllers/UsersController");
 const AuthentificationController = require("../controllers/AuthentificationController");
 const AuthMiddleware = require("../middlewares/auth");
 const CardsController = require("../controllers/CardsController");
+const TradesController = require("../controllers/TradesController");
 
 const router = express.Router();
 
@@ -37,5 +38,17 @@ router.get(
 	AuthMiddleware.authenticate,
 	UsersController.getMyProfile
 );
+
+router.post("/trades/:id", TradesController.index);
+
+router.post("/trades", TradesController.store);
+
+router.put("/trades/:id", TradesController.update);
+
+router.post("/house", TradesController.house);
+
+router.delete("/trades/:id", TradesController.destroy);
+
+router.get("/trades/:id", TradesController.show);
 
 module.exports = router;

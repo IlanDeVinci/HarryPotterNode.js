@@ -17,7 +17,7 @@ const getMyProfile = async () => {
 	const minutes = parseInt(seconds / 60);
 	const hours = parseInt(minutes / 60);
 	const days = parseInt(hours / 24);
-	if (days > 1 || hours > 8) {
+	if (days > 1 || hours > 1 || data.id == null) {
 		logout();
 	} else {
 		document.getElementById(
@@ -42,6 +42,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 		document.getElementById("register").style.display = "block";
 		document.getElementById("logout").style.display = "none";
 		document.getElementById("welcomeusername").style.display = "none";
+		document.getElementById("floating-button").classList.add("deadgebutton");
+		console.log("deadge");
 	} else {
 		document.getElementById("login").style.display = "none";
 		document.getElementById("register").style.display = "none";

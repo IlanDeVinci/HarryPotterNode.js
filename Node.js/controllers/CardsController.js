@@ -65,6 +65,7 @@ class CardsController {
 				data: {
 					favorite: req.body.favorite,
 					ownerId: req.body.ownerId,
+					istrading: req.body.istrading,
 				},
 			});
 			if (post === null) {

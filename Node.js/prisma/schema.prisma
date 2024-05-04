@@ -22,8 +22,12 @@ model User {
   last_booster DateTime
   last_active DateTime @default(now())
   pity Int @default(0)
+  istrading Boolean @default(false)
+  cardtradingid Int @default(0)
   cards Card[]
-}
+  sentTrades Trade[] @relation("TradeSender")
+  receivedTrades Trade[] @relation("TradeReceiver")
+  }
 
 model Card {
   id        Int     @id @default(autoincrement())
@@ -33,4 +37,21 @@ model Card {
   favorite Boolean @default(false)
   owner    User    @relation(fields: [ownerId], references: [id])
   ownerId  Int
+  istrading Boolean @default(false)
+  sentTrades Trade[] @relation("TradeSenderCard")
+  receivedTrades Trade[] @relation("TradeReceiverCard")
+  }
+
+model Trade {
+  id Int @id @default(autoincrement())
+  senderId     Int
+  sender       User  @relation("TradeSender", fields: [senderId], references: [id])
+  receiverId   Int
+  receiver     User  @relation("TradeReceiver", fields: [receiverId], references: [id])
+  senderCardId Int
+  senderCard   Card  @relation("TradeSenderCard", fields: [senderCardId], references: [id])
+  receiverCardId Int?
+  receiverCard Card?  @relation("TradeReceiverCard", fields: [receiverCardId], references: [id])
+  status String  @default("pending")
+  date DateTime @default(now())
 }

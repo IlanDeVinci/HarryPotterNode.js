@@ -8,7 +8,7 @@
 		<link
 			rel="stylesheet"
 			href="css/style.css" />
-		<title>Document</title>
+		<title id="pagetitle">Document</title>
 	</head>
 	<body>
 		<header>
@@ -23,18 +23,41 @@
 			</a>
 			<h1 id="title">Character Card</h1>
 			<div>
-				<form action="register.html">
+				<form
+					class="logregi"
+					id="register"
+					action="register.html">
 					<input
 						type="submit"
 						value="Register" />
 				</form>
-				<form action="login.html">
+				<form
+					class="logregi"
+					id="login"
+					action="login.html">
 					<input
 						type="submit"
 						value="Login" />
 				</form>
+				<form
+					class="logregi"
+					id="logout"
+					action="#">
+					<input
+						type="submit"
+						value="Logout" />
+					<p id="welcomeusername"></p>
+				</form>
 			</div>
 		</header>
+		<div class="popup">
+			<div class="youtraded">
+				<p>This is a nice looking popup!</p>
+			</div>
+		</div>
+		<div
+			id="tradingCardContainer"
+			class="tradingCardContainer"></div>
 		<div
 			class="modal"
 			id="modal">
@@ -44,34 +67,60 @@
 					<h2>Trading Interface</h2>
 					<span class="close">&times;</span>
 				</div>
-				<div class="modal-body">
-					<form>
-						<label for="cardchoose">Choose a card:</label>
-						<select
-							id="cardchoose"
-							name="cars">
-							<option value="card">Card</option>
-						</select>
-						<input
-							id="submitcard"
-							type="submit"
-							value="Show" />
-					</form>
-					<div id="showCard"></div>
-
-					<form>
-						<label for="userschoose">Choose some user to trade with:</label>
-						<select
-							name="users"
-							id="userschoose">
-							<option value="Slapilou">Slapilou</option>
-						</select>
-						<input
-							type="submit"
-							id="submitExchange"
-							value="Confirm" />
-					</form>
+				<div class="tab_buttons">
+					<button class="tab-button active">New Trade</button>
+					<button class="tab-button">Active Trades</button>
+					<button class="tab-button">Trade Requests</button>
+					<button class="tab-button">Past Trades</button>
 				</div>
+				<div class="tab-content">
+					<div class="tab">
+						<div class="modal-body">
+							<h1>New Trade</h1>
+							<form>
+								<label for="cardchoose">Choose a card:</label>
+								<select
+									id="cardchoose"
+									name="cars">
+									<option value="card">No cards available.</option>
+								</select>
+								<input
+									id="submitcard"
+									type="submit"
+									value="Show" />
+							</form>
+							<div id="showCard"></div>
+
+							<form>
+								<label for="userschoose">Choose some user to trade with:</label>
+								<select
+									name="users"
+									id="userschoose">
+									<option value="Slapilou">Slapilou</option>
+								</select>
+								<input
+									type="submit"
+									id="submitExchange"
+									value="Confirm" />
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="tab-content">
+					<h1>Active Trades</h1>
+					<div class="tab"></div>
+				</div>
+				<div class="tab-content">
+					<h1>Trade Requests</h1>
+
+					<div class="tab"></div>
+				</div>
+				<div class="tab-content">
+					<h1>Completed Trades</h1>
+
+					<div class="tab"></div>
+				</div>
+
 				<div class="modal-footer">
 					<h3>Footer</h3>
 				</div>
@@ -126,6 +175,7 @@
 		</button>
 
 		<script src="single.js"></script>
+		<script src="loggedIn.js"></script>
 		<script src="burgerIcon.js"></script>
 		<script src="modalTrade.js"></script>
 	</body>
