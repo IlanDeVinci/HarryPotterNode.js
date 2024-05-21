@@ -91,20 +91,26 @@ class UsersController {
 	}
 	//app.destroy (/users/:id)
 	async destroy(req, res) {
-		const id = req.params.id;
-		const user = await prisma.user.findUnique({
-			where: { id: parseInt(id) },
-		});
+		try {
+			const id = req.params.id;
+			const user = await prisma.user.findUnique({
+				where: { id: parseInt(id) },
+			});
 
-		if (user === null) {
-			return res.status(404).send("User not found");
+			if (user === null) {
+				return res.status(404).send("User not found");
+			}
+
+			const deletedUser = await prisma.user.delete({
+				where: { id: parseInt(id) },
+			});
+
+			return res.status(200).send(deletedUser);
+		} catch (error) {
+			return res.status(500).send({
+				message: error.message,
+			});
 		}
-
-		const deletedUser = await prisma.user.delete({
-			where: { id: parseInt(id) },
-		});
-
-		return res.status(200).send(deletedUser);
 	}
 }
 

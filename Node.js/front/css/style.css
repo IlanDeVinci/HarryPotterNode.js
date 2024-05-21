@@ -48,7 +48,7 @@
 }
 
 #booster p {
-	margin-top: 5%;
+	margin-top: 0.2rem;
 }
 header div {
 	width: 30%;
@@ -530,6 +530,9 @@ main {
 
 .relative {
 	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 100%;
 }
 
 h1 {
@@ -787,8 +790,8 @@ footer {
 	justify-content: center;
 	width: 20px;
 	height: 20px;
-	top: -10%;
-	right: -10%;
+	top: -0.5rem;
+	right: -0.9rem;
 	background-color: #ff0000;
 	color: white;
 	padding: 10px;
@@ -803,8 +806,8 @@ footer {
 	justify-content: center;
 	width: 12px;
 	height: 12px;
-	top: -40%;
-	right: -5%;
+	top: -1rem;
+	right: -0.1rem;
 	background-color: #ff0000;
 	color: white;
 	padding: 10px;
@@ -855,17 +858,13 @@ footer {
 }
 
 .tab_buttons {
-	display: flex;
-	flex-wrap: wrap;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
 	justify-content: center;
 	align-items: center;
-	margin-top: 2%;
+	margin-top: 1rem;
 	margin-bottom: 2%;
-	div {
-		width: 24%;
-		margin-right: 2%;
-		margin-left: 2%;
-	}
 }
 
 .tab-button {
@@ -875,7 +874,7 @@ footer {
 	justify-content: center;
 	background-color: rgb(84, 0, 0);
 	color: white;
-	width: 23%;
+	width: 90%;
 	padding: 10px 20px;
 	margin: 0 5px;
 	border-radius: 5px;
@@ -1191,7 +1190,7 @@ footer {
 	#booster {
 		font-size: 2.4rem;
 		p {
-			margin-top: 10%;
+			margin-top: 0.2rem;
 		}
 	}
 	.houses button {
@@ -1318,8 +1317,12 @@ footer {
 }
 
 @media screen and (max-width: 500px) {
+	option,
+	select {
+		font-size: 0.6rem;
+	}
 	#booster p {
-		margin-top: 20%;
+		margin-top: 0.6rem;
 	}
 	.trade p {
 		font-size: 0.8rem;
@@ -1358,7 +1361,8 @@ footer {
 			justify-content: center;
 		}
 	}
-	.exclamation {
+	.exclamation,
+	.exclamationsmall {
 		font-size: 0.8rem;
 		width: 10px;
 		height: 10px;
@@ -1673,8 +1677,9 @@ footer {
 	background-color: gray;
 	animation: none;
 }
-#booster.deadgebutton {
+nav#booster.deadgebutton {
 	pointer-events: none;
+	background-color: gray;
 }
 .deadgebutton:before {
 	pointer-events: none;

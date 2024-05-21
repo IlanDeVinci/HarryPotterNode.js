@@ -56,7 +56,7 @@ window.getProfile = async function getProfile() {
 	const minutes = parseInt(seconds / 60);
 	const hours = parseInt(minutes / 60);
 	const days = parseInt(hours / 24);
-	if (seconds >= 20) {
+	if (days >= 1) {
 		boosterCd = false;
 		document
 			.querySelector("#boostercontainer")
@@ -98,7 +98,7 @@ async function checkBoosterCd() {
 		const minutes = parseInt(seconds / 60);
 		const hours = parseInt(minutes / 60);
 		const days = parseInt(hours / 24);
-		if (seconds >= 20) {
+		if (days >= 1) {
 			boosterCd = false;
 			document
 				.querySelector("#boostercontainer")
