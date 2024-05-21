@@ -83,7 +83,7 @@ document.getElementById("submit").addEventListener("click", async function (e) {
 
 		if (document.URL.includes("register")) {
 			username = document.querySelector("#name").value;
-			let seconds = 45;
+			let seconds = 86385;
 			let dateNow = new Date();
 			let last_booster = new Date(dateNow.getTime() - seconds * 1000);
 			last_booster = last_booster.toISOString();
@@ -121,7 +121,7 @@ document.getElementById("submit").addEventListener("click", async function (e) {
 			const data = await response.json();
 			const id = data.id;
 			const error = data.error;
-			if (error === undefined) {
+			if (error === undefined || error != null) {
 				let current = new Date();
 				current = current.toISOString();
 				const last_active = await fetch(`http://localhost:3000/users/${id}`, {

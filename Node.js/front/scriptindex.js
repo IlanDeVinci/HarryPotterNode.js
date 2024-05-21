@@ -9,12 +9,13 @@ card.addEventListener("mouseout", stopRotate); //lance une fonction quand la sou
 function rotate(e) {
 	const cardItem = this.querySelector(".frontimage");
 	const halfWidth = cardItem.offsetWidth / 2;
+	const halfHeight = cardItem.offsetHeight / 2;
 	//ajoute en style css à l'image une rotation X et une rotation Y en degrés en fonction de la position de la souris par rapport à l'image
 	cardItem.style.transform =
-		"rotateX(" +
-		-(e.offsetY - halfWidth) / 25 +
-		"deg) rotateY(" +
-		(e.offsetX - halfWidth) / 25 +
+		"rotateY(" +
+		-(halfWidth - e.offsetX) / 30 +
+		"deg) rotateX(" +
+		(halfHeight - e.offsetY) / 20 +
 		"deg)";
 }
 

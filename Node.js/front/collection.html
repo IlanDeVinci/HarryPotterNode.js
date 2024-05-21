@@ -13,42 +13,49 @@
 
 	<body id="body">
 		<header>
-			<a
-				href="index.html"
-				class="logo"
-				id="logobi">
-				<img
-					class="logoimg"
-					src="images/picmix.com_968628.png"
-					alt="" />
-			</a>
-			<h1 id="title">Card Archive</h1>
 			<div>
-				<form
-					class="logregi"
-					id="register"
-					action="register.html">
-					<input
-						type="submit"
-						value="Register" />
-				</form>
-				<form
-					class="logregi"
-					id="login"
-					action="login.html">
-					<input
-						type="submit"
-						value="Login" />
-				</form>
-				<form
-					class="logregi"
-					id="logout"
-					action="#">
-					<input
-						type="submit"
-						value="Logout" />
-					<p id="welcomeusername"></p>
-				</form>
+				<a
+					href="index.html"
+					class="logo"
+					id="logobi">
+					<img
+						class="logoimg"
+						src="images/picmix.com_968628.png"
+						alt="" />
+				</a>
+			</div>
+
+			<div>
+				<h1 id="title">Card Archive</h1>
+			</div>
+			<div>
+				<div>
+					<form
+						class="logregi"
+						id="register"
+						action="register.html">
+						<input
+							type="submit"
+							value="Register" />
+					</form>
+					<form
+						class="logregi"
+						id="login"
+						action="login.html">
+						<input
+							type="submit"
+							value="Login" />
+					</form>
+					<form
+						class="logregi"
+						id="logout"
+						action="#">
+						<input
+							type="submit"
+							value="Logout" />
+						<p id="welcomeusername"></p>
+					</form>
+				</div>
 			</div>
 		</header>
 		<div class="popup">
@@ -69,62 +76,86 @@
 					<span class="close">&times;</span>
 				</div>
 				<div class="tab_buttons">
-					<button class="tab-button active">New Trade</button>
-					<button class="tab-button">Active Trades</button>
-					<button class="tab-button">Trade Requests</button>
-					<button class="tab-button">Past Trades</button>
-				</div>
-				<div class="tab-content">
-					<div class="tab">
-						<div class="modal-body">
-							<h1>New Trade</h1>
-							<form>
-								<label for="cardchoose">Choose a card:</label>
-								<select
-									id="cardchoose"
-									name="cars">
-									<option value="card">No cards available.</option>
-								</select>
-								<input
-									id="submitcard"
-									type="submit"
-									value="Show" />
-							</form>
-							<div id="showCard"></div>
+					<div class="relative">
+						<button class="tab-button active">New Trade</button>
+					</div>
+					<div class="relative">
+						<button class="tab-button">Active Trades</button>
+						<h2
+							id="little!active"
+							class="exclamationsmall">
+							!
+						</h2>
+					</div>
+					<div class="relative">
+						<button class="tab-button">Trade Requests</button>
+						<h2
+							id="little!requests"
+							class="exclamationsmall">
+							!
+						</h2>
+					</div>
 
-							<form>
-								<label for="userschoose">Choose some user to trade with:</label>
-								<select
-									name="users"
-									id="userschoose">
-									<option value="Slapilou">Slapilou</option>
-								</select>
-								<input
-									type="submit"
-									id="submitExchange"
-									value="Confirm" />
-							</form>
-						</div>
+					<div class="relative">
+						<button class="tab-button">Past Trades</button>
+						<h2
+							id="little!completed"
+							class="exclamationsmall">
+							!
+						</h2>
 					</div>
 				</div>
-				<div class="tab-content">
-					<h1>Active Trades</h1>
-					<div class="tab"></div>
-				</div>
-				<div class="tab-content">
-					<h1>Trade Requests</h1>
+			</div>
+			<div class="tab-content">
+				<div class="tab">
+					<div class="modal-body">
+						<h1>New Trade</h1>
+						<form>
+							<label for="cardchoose">Choose a card:</label>
+							<select
+								id="cardchoose"
+								name="cars">
+								<option value="card">No cards available.</option>
+							</select>
+							<input
+								id="submitcard"
+								type="submit"
+								value="Show" />
+						</form>
+						<div id="showCard"></div>
 
-					<div class="tab"></div>
+						<form>
+							<label for="userschoose">Choose some user to trade with:</label>
+							<select
+								name="users"
+								id="userschoose">
+								<option value="Slapilou">Slapilou</option>
+							</select>
+							<input
+								type="submit"
+								id="submitExchange"
+								value="Confirm" />
+						</form>
+					</div>
 				</div>
-				<div class="tab-content">
-					<h1>Completed Trades</h1>
+			</div>
+			<div class="tab-content">
+				<h1>Active Trades</h1>
+				<div class="tab"></div>
+			</div>
+			<div class="tab-content">
+				<h1>Trade Requests</h1>
 
-					<div class="tab"></div>
-				</div>
+				<div class="tab"></div>
+			</div>
+			<div class="tab-content">
+				<h1>Completed Trades</h1>
 
-				<div class="modal-footer">
-					<h3>Footer</h3>
-				</div>
+				<div class="tab"></div>
+			</div>
+
+			<div class="modal-footer">
+				<h3>Footer</h3>
 			</div>
 		</div>
 		<nav id="nav">
@@ -136,7 +167,7 @@
 					<div class="bar"></div>
 					<div class="bar"></div>
 				</div>
-				<ul
+				<div
 					class="menu"
 					id="menu">
 					<a
@@ -159,7 +190,7 @@
 						id="profile"
 						>Profile</a
 					>
-				</ul>
+				</div>
 			</div>
 		</nav>
 		<nav class="navsearch">
@@ -173,31 +204,31 @@
 			<div class="houses">
 				<button
 					type="button"
-					data-="sortbutton"
+					name="sortbutton"
 					id="Gryffindor">
 					Gryffindor
 				</button>
 				<button
 					type="button"
-					data-="sortbutton"
+					name="sortbutton"
 					id="Hufflepuff">
 					Hufflepuff
 				</button>
 				<button
 					type="button"
-					data-="sortbutton"
+					name="sortbutton"
 					id="Slytherin">
 					Slytherin
 				</button>
 				<button
 					type="button"
-					data-="sortbutton"
+					name="sortbutton"
 					id="Ravenclaw">
 					Ravenclaw
 				</button>
 				<button
 					type="button"
-					data-="sortbutton"
+					name="sortbutton"
 					id="None">
 					None
 				</button>
@@ -206,14 +237,22 @@
 				id="cardContainer"
 				class="cardContainer"></div>
 		</main>
-		<footer>&copy; 2024 Slapilou Harry Potter Card Website</footer>
+		<footer>&copy; 2024 Ilan Harry Potter Trading Card Website</footer>
 
-		<button
+		<div
 			class="floating-button"
 			id="floating-button">
-			Trading
-		</button>
-
+			<h1>Trading</h1>
+			<h2
+				id="little!"
+				class="exclamation">
+				!
+			</h2>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/set-interval-async"></script>
+		<script
+			type="module"
+			src="https://unpkg.com/delay"></script>
 		<script src="script.js"></script>
 		<script src="loggedIn.js"></script>
 		<script src="modalTrade.js"></script>

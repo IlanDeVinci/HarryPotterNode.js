@@ -21,7 +21,7 @@ formulaire.addEventListener("submit", async (event) => {
 	const data = await response.json();
 
 	const token = data.token;
-
+	console.log(`token = ${token}`);
 	localStorage.setItem("token", token);
 	window.location.href = "/front/profile.html";
 });

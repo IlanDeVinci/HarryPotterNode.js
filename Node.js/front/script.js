@@ -85,7 +85,7 @@ let currentFilter = "none";
 //la fonction suivante change le thème du site en fonction du bouton cliqué + change et applique le filtre
 
 function changeTheme(name) {
-	document.querySelectorAll('[data-="sortbutton"]').forEach((e) => {
+	document.querySelectorAll('[name="sortbutton"]').forEach((e) => {
 		if (currentFilter == e.id && name !== e.id) {
 			e.classList.toggle(currentFilter); //désactive le visuel du précédent filtre
 		}
@@ -106,7 +106,7 @@ function changeTheme(name) {
 }
 
 //ajoute une fonction qui s'exécute lorsqu'on clique un des boutons filtres
-document.querySelectorAll('[data-="sortbutton"]').forEach((element) => {
+document.querySelectorAll('[name="sortbutton"]').forEach((element) => {
 	element.addEventListener("click", function () {
 		changeTheme(element.id);
 	});

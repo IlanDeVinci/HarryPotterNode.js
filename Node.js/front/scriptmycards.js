@@ -56,7 +56,7 @@ window.getProfile = async function getProfile() {
 	const minutes = parseInt(seconds / 60);
 	const hours = parseInt(minutes / 60);
 	const days = parseInt(hours / 24);
-	if (days > 1 || hours > 8 || minutes >= 1) {
+	if (seconds >= 20) {
 		boosterCd = false;
 		document
 			.querySelector("#boostercontainer")
@@ -66,12 +66,23 @@ window.getProfile = async function getProfile() {
 		document.querySelector("#cooldownText").innerHTML = `Ready !`;
 	} else {
 		boosterCd = true;
-		document.querySelector("#boostercontainer").classList.add("deadgebutton");
 		document.querySelector("#booster").classList.add("deadgebutton");
 
-		document.querySelector("#cooldownText").innerHTML = `Cooldown : ${
-			60 - seconds
-		}s`;
+		document.querySelector("#boostercontainer").classList.add("deadgebutton");
+		let cdtext = "Cooldown : ";
+		//if (hours < 0) {
+		let actualhours = hours - days * 24;
+		cdtext += `${23 - actualhours}h `;
+
+		//}
+		//if (minutes > 0 || hours > 0) {
+		let actualminutes = minutes - hours * 60;
+		cdtext += `${59 - actualminutes}m `;
+		//}
+		let actualseconds = seconds - minutes * 60;
+		cdtext += `${59 - actualseconds}s`;
+
+		document.querySelector("#cooldownText").innerHTML = cdtext;
 	}
 	checkBoosterCd();
 };
@@ -87,7 +98,7 @@ async function checkBoosterCd() {
 		const minutes = parseInt(seconds / 60);
 		const hours = parseInt(minutes / 60);
 		const days = parseInt(hours / 24);
-		if (days > 1 || hours > 8 || minutes >= 1) {
+		if (seconds >= 20) {
 			boosterCd = false;
 			document
 				.querySelector("#boostercontainer")
@@ -100,9 +111,20 @@ async function checkBoosterCd() {
 			document.querySelector("#booster").classList.add("deadgebutton");
 
 			document.querySelector("#boostercontainer").classList.add("deadgebutton");
-			document.querySelector("#cooldownText").innerHTML = `Cooldown : ${
-				60 - seconds
-			}s`;
+			let cdtext = "Cooldown : ";
+			//if (hours < 0) {
+			let actualhours = hours - days * 24;
+			cdtext += `${23 - actualhours}h `;
+
+			//}
+			//if (minutes > 0 || hours > 0) {
+			let actualminutes = minutes - hours * 60;
+			cdtext += `${59 - actualminutes}m `;
+			//}
+			let actualseconds = seconds - minutes * 60;
+			cdtext += `${59 - actualseconds}s`;
+
+			document.querySelector("#cooldownText").innerHTML = cdtext;
 		}
 	}, 1000);
 }
@@ -162,6 +184,23 @@ function sortChars(list) {
 		}
 	}
 }
+
+let modal = document.getElementById("modal");
+//on récupère le bouton pour faire apparaître le modal
+
+//le modal disparaît si on clique sur la croix
+document.querySelector("span").addEventListener("click", async function () {
+	await getProfile();
+	sortChars(userList);
+});
+
+//le modal disparaît si on clique en dehors
+window.onclick = async function (event) {
+	if (event.target == modal) {
+		await getProfile();
+		modal.style.display = "none";
+	}
+};
 
 let favSort = [];
 let favNumber;
@@ -265,6 +304,7 @@ async function addBoosterToDB(card) {
 			favorite: false,
 		}),
 	});
+	const data = await res.json();
 	const result = await fetch(`http://localhost:3000/users/${id}`, {
 		method: "PUT",
 		headers: {
@@ -274,6 +314,8 @@ async function addBoosterToDB(card) {
 			pity: pity,
 		}),
 	});
+	let newid = data.id;
+	return newid;
 }
 
 //la fonction suivante sert à l'ouverture des boosters
@@ -327,7 +369,7 @@ boosterb.addEventListener("click", async function () {
 		const BoostOpen = async () => {
 			let sleeptime = 0;
 			for (let i = 0; i < cardsPerBooster; i++) {
-				await setAsyncTimeout(() => {
+				await setAsyncTimeout(async () => {
 					sleeptime = 3000;
 					// on met un délai de 3 secondes à chaque animation et création de carte
 					pity += 1; //on ajoute 1 à la "pity", une garantie d'obtenir une carte mythique après un certain nombre de tirages
@@ -355,6 +397,8 @@ boosterb.addEventListener("click", async function () {
 					}
 					//on stringify et parse le tempChar pour le formatter correctement
 					tempChar2 = JSON.parse(JSON.stringify(tempChar));
+					const id = await addBoosterToDB(tempChar2);
+					tempChar2[0].id = id;
 					//on ajoute la nouvelle carte à la liste de cartes de l'utilisateur
 					userList = tempChar2.concat(userList);
 					//on réorganise la liste
@@ -363,7 +407,6 @@ boosterb.addEventListener("click", async function () {
 					userList.forEach((element) => {
 						element.isnew = "no";
 					});
-					addBoosterToDB(tempChar2);
 				}, sleeptime);
 			}
 		};
@@ -514,7 +557,7 @@ function changeTheme(name) {
 		raritySort(currentRarity);
 		currentRarity = "none";
 	}
-	document.querySelectorAll('[data-="sortbutton"]').forEach((e) => {
+	document.querySelectorAll('[name="sortbutton"]').forEach((e) => {
 		//on retire le précédent visuel de filtre sur le bouton
 		if (currentFilter == e.id && name !== e.id) {
 			e.classList.toggle(currentFilter);
@@ -536,7 +579,7 @@ function changeTheme(name) {
 }
 
 //ajoute les fonctions qui s'exécutent lorsqu'on appuie sur les boutons filtres
-document.querySelectorAll('[data-="sortbutton"]').forEach((element) => {
+document.querySelectorAll('[name="sortbutton"]').forEach((element) => {
 	element.addEventListener("click", function () {
 		if (!boosting) {
 			//les boutons sont inaccessibles s'il y a le cooldown de l'animation
@@ -552,7 +595,7 @@ document.querySelectorAll('[data-="sortbutton"]').forEach((element) => {
 
 //cette fonction change le filtre de rareté des cartes
 function raritySort(rarity) {
-	document.querySelectorAll('[data-="sortbutton"]').forEach((e) => {
+	document.querySelectorAll('[name="sortbutton"]').forEach((e) => {
 		//on retire le précédent visuel de filtre sur le bouton
 		if (currentRarity == e.id && rarity !== e.id) {
 			e.classList.toggle(currentRarity);

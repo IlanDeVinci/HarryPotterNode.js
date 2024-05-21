@@ -27,13 +27,21 @@ class AuthentificationController {
 			}
 
 			const token = generateToken(user);
-
+			console.log(token);
+			if (
+				token === null ||
+				token === undefined ||
+				token === "" ||
+				token === " "
+			) {
+				return res.status(401).send({ error: "Token not generated" });
+			}
 			// ICI ON GENERE UN TOKEN
 			const id = user.id;
 			return res.status(200).send({ token, user, id });
 		} catch (e) {
 			return res.status(500).send({
-				message: e.message,
+				error: e.message,
 			});
 		}
 	}

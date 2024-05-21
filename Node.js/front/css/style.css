@@ -5,6 +5,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	transition: all 0.2s ease-in-out;
 }
 
 :root {
@@ -25,13 +26,41 @@
 	);
 }
 
+#mdpError {
+	/*color: rgb(135, 0, 0);*/
+	text-align: center;
+}
 #booster {
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	pointer-events: all;
 	width: 90%;
 	height: 90%;
 	font-family: HARRYP;
 	font-size: 3rem;
+	appearance: auto;
+	color: rgb(10, 10, 10);
+	border-width: 2px;
+	border-style: outset;
+	border-color: rgb(10, 10, 10);
+}
+
+#booster p {
+	margin-top: 5%;
+}
+header div {
+	width: 30%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+header div div {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
 body {
@@ -94,7 +123,7 @@ form {
 	height: 20%;
 	border-radius: 5vw;
 	background-color: darkgray;
-	width: 69%;
+	width: 40%;
 	border: 5px solid white;
 }
 .form input {
@@ -114,21 +143,19 @@ header {
 	background-color: #141414;
 	color: white;
 	text-align: center;
-	padding: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 }
-header div {
-	display: flex;
-	justify-content: space-between;
-}
+
 .logoimg {
 	display: flex;
 	width: 100%;
 }
 .logo {
-	width: 10%;
+	width: 25%;
 }
 select {
 	width: 50%;
@@ -246,7 +273,7 @@ form a:hover {
 }
 
 header form input {
-	font-size: max(2vw, 1.1rem);
+	font-size: min(2vw, 1.5rem);
 	border-radius: 10px;
 	margin: 10px;
 	padding: 10px;
@@ -273,6 +300,7 @@ nav {
 	background-image: url(https://r4.wallpaperflare.com/wallpaper/932/891/825/hogwarts-legacy-video-games-dragon-owl-harry-potter-hd-wallpaper-9846ad3860f06c28e07ce1ae58d2244a.jpg);
 	background-size: cover;
 	background-position-y: 22%;
+	background-position-x: center;
 	box-shadow: 0 0 1em inset;
 }
 nav h3 {
@@ -358,7 +386,7 @@ nav a {
 	}
 }
 
-nav button {
+nav #booster {
 	display: inline-block;
 	overflow: hidden;
 	position: relative;
@@ -368,7 +396,7 @@ nav button {
 	box-shadow: 0 0 5em black;
 }
 
-nav button:after {
+nav #booster:after {
 	content: "";
 	position: absolute;
 	top: -120%;
@@ -387,8 +415,8 @@ nav button:after {
 }
 
 @media (hover: hover) and (pointer: fine) {
-	nav button:hover:after,
-	nav button:active::after {
+	nav #booster:hover:after,
+	nav #booster:active::after {
 		transform: rotate(0deg) scale(1.1);
 		opacity: 1; /*on le fait apparaître*/
 		top: -30%;
@@ -500,25 +528,33 @@ main {
 	}
 }
 
+.relative {
+	position: relative;
+}
+
 h1 {
 	font-family: HARRYP;
 	font-size: 3rem;
 }
 .back {
-	padding: 5%;
+	padding: 4%;
 	background-color: gray;
+	border: 2px solid rgb(22, 22, 22);
 	border-radius: 30px;
-	margin-top: 1%;
+	margin-top: 3%;
+}
+.back:hover {
+	background-color: #aaaaaa;
 }
 .single {
 	background-color: whitesmoke;
-	justify-self: center;
+	justify-self: start;
 	width: 80%;
 	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 	padding: 2%;
 	font-size: 1.5em;
 	color: #0c0c0c;
-	margin-top: 3%;
+	margin-top: 4%;
 }
 .card {
 	align-items: center;
@@ -706,12 +742,14 @@ option#mythical {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	width: 35%;
+	width: min(60%, 500px);
 	background-color: #fafafa;
 	border-radius: 5vw;
 	text-align: center;
 	padding: 1%;
 	font-size: 0.7rem;
+	margin-bottom: 5%;
+	padding-bottom: 5%;
 }
 #character h1 {
 	margin-bottom: 3%;
@@ -739,12 +777,47 @@ footer {
 	padding-bottom: 10px;
 	bottom: 0;
 	width: 100%;
-	z-index: 2;
+	z-index: 11;
+}
+
+.exclamation {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	top: -10%;
+	right: -10%;
+	background-color: #ff0000;
+	color: white;
+	padding: 10px;
+	border-radius: 50%;
+	box-shadow: 0 0 1em black;
+}
+
+.exclamationsmall {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 12px;
+	height: 12px;
+	top: -40%;
+	right: -5%;
+	background-color: #ff0000;
+	color: white;
+	padding: 10px;
+	border-radius: 50%;
+	box-shadow: 0 0 1em black;
 }
 
 .floating-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	position: fixed; /* le bouton restera à la même position sur l'écran peu importe la scrollbar*/
 	bottom: 70px;
 	left: 40px;
@@ -758,7 +831,11 @@ footer {
 	height: 120px;
 	box-shadow: 2px 2px 3px #000000;
 	transition: 0.3s all ease-in-out;
-	z-index: 3; /*il doit être au dessus de la plupart des autres éléments*/
+	z-index: 11; /*il doit être au dessus de la plupart des autres éléments*/
+}
+
+.floating-button h1 {
+	font-size: 2.45rem;
 }
 @media (hover: hover) and (pointer: fine) {
 	.floating-button:hover,
@@ -779,15 +856,26 @@ footer {
 
 .tab_buttons {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	margin-top: 2%;
 	margin-bottom: 2%;
+	div {
+		width: 24%;
+		margin-right: 2%;
+		margin-left: 2%;
+	}
 }
 
 .tab-button {
+	text-align: center;
+	position: relative;
+	display: flex;
+	justify-content: center;
 	background-color: rgb(84, 0, 0);
 	color: white;
+	width: 23%;
 	padding: 10px 20px;
 	margin: 0 5px;
 	border-radius: 5px;
@@ -826,30 +914,36 @@ footer {
 	display: flex;
 	flex-direction: column;
 	border-radius: 20px;
+	overflow: hidden;
 }
 
 .trade p {
+	padding-top: 10%;
+	padding-bottom: 10%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 100%;
 	width: 100%;
-	border-radius: 20px;
 }
 .trade .user {
 	font-weight: bold;
+	padding-bottom: 2%;
 }
 
 .trade .normalsender,
 .trade .receive {
 	font-weight: bold;
 	border: solid 0.15rem rgb(81, 0, 0);
+	box-shadow: 0 0 0.5em white;
 }
 
 .trade .normalreceiver,
-.trade .sender {
+.trade .sender,
+.trade .receiverPending {
 	font-weight: bold;
 	border: solid 0.15rem rgb(255, 255, 255);
+	box-shadow: 0 0 0.5em black;
 }
 
 .trade .card {
@@ -859,6 +953,9 @@ footer {
 .trade .buttons {
 	display: flex;
 	justify-content: center;
+	flex-direction: row;
+	border-radius: 0;
+	overflow: visible;
 }
 
 .trade .buttons button:last-child {
@@ -1014,6 +1111,9 @@ footer {
 }
 
 @media screen and (max-width: 1000px) {
+	.user h2 {
+		font-size: 1.1rem;
+	}
 	.houses button {
 		font-size: 2rem;
 	}
@@ -1036,7 +1136,7 @@ footer {
 		padding-top: 175px;
 	}
 	#character {
-		width: 50%;
+		width: 69%;
 	}
 
 	#title {
@@ -1084,9 +1184,15 @@ footer {
 		animation-name: animatetop;
 		animation-duration: 0.4s;
 	}
-
+	.single {
+		width: 80%;
+		font-size: 0.9rem;
+	}
 	#booster {
-		font-size: 2rem;
+		font-size: 2.4rem;
+		p {
+			margin-top: 10%;
+		}
 	}
 	.houses button {
 		font-size: 1.5rem;
@@ -1128,10 +1234,11 @@ footer {
 
 	.logregi {
 		font-family: HARRYP;
+		padding: 0;
 	}
 
 	footer {
-		position: relative;
+		position: fixed;
 		background-color: #333;
 		color: white;
 		text-align: center;
@@ -1150,6 +1257,9 @@ footer {
 		width: 90px;
 		height: 90px;
 		box-shadow: 2px 2px 3px #000000;
+	}
+	.floating-button h1 {
+		font-size: 1.8rem;
 	}
 
 	.burger-menu {
@@ -1208,6 +1318,51 @@ footer {
 }
 
 @media screen and (max-width: 500px) {
+	#booster p {
+		margin-top: 20%;
+	}
+	.trade p {
+		font-size: 0.8rem;
+	}
+	label {
+		font-size: 0.8rem;
+	}
+	#cooldownText {
+		font-size: 0.7rem;
+	}
+	.modal-header h2 {
+		font-size: 1.2rem;
+	}
+	.trade .buttons button {
+		padding: 2px;
+		width: 50px;
+		font-size: 0.7rem;
+	}
+	.user {
+		padding: 1%;
+	}
+	.user h2,
+	.user p {
+		font-size: 0.8rem;
+	}
+	.single {
+		font-size: 0.7rem;
+	}
+	.trade {
+		grid-auto-flow: row;
+		grid-template-columns: repeat(2, 50%);
+		align-items: center;
+		justify-items: center;
+		div {
+			width: 70%;
+			justify-content: center;
+		}
+	}
+	.exclamation {
+		font-size: 0.8rem;
+		width: 10px;
+		height: 10px;
+	}
 	.burger-menu {
 		width: 50%;
 	}
@@ -1228,6 +1383,8 @@ footer {
 	}
 	header form input {
 		font-size: 0.9rem;
+		padding: 7%;
+		border: 3px solid grey;
 	}
 	.intro {
 		font-size: 0.8rem;
@@ -1239,6 +1396,9 @@ footer {
 		font-size: 0.6rem;
 		height: 69px;
 		width: 69px;
+	}
+	.floating-button h1 {
+		font-size: 1.2rem;
 	}
 	.round-time-bar div {
 		width: 90vw;
@@ -1315,6 +1475,7 @@ footer {
 }
 
 .popup {
+	color: whitesmoke;
 	display: none;
 	justify-content: center;
 	align-items: center;
@@ -1322,7 +1483,7 @@ footer {
 	height: 15%;
 	background-color: #6f0000;
 	border-radius: 20px;
-	border: solid 0.4rem whitesmoke;
+	border: solid 0.25rem rgb(58, 58, 58);
 	width: 50%;
 	position: fixed;
 	top: -20%;

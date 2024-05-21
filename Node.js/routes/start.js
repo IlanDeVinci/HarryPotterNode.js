@@ -51,4 +51,9 @@ router.delete("/trades/:id", TradesController.destroy);
 
 router.get("/trades/:id", TradesController.show);
 
+router.get(
+	"/decrementnewcompleted/:id",
+	TradesController.decrementnewcompleted
+);
+
 module.exports = router;

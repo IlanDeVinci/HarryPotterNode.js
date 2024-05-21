@@ -1,5 +1,7 @@
 const userToken = localStorage.getItem("token");
 let id = 0;
+let isCardAppearing = false;
+let currenttab = 0;
 const setAsyncTimeout = (cb, timeout = 0) =>
 	new Promise((resolve) => {
 		setTimeout(() => {
@@ -7,6 +9,11 @@ const setAsyncTimeout = (cb, timeout = 0) =>
 			resolve();
 		}, timeout);
 	});
+document.getElementById("little!").style.display = "none";
+document.getElementById("little!active").style.display = "none";
+document.getElementById("little!requests").style.display = "none";
+document.getElementById("little!completed").style.display = "none";
+let setIntervalAsync = SetIntervalAsync.setIntervalAsync;
 let isChosenCard = false;
 let isChosenUser = false;
 if (
@@ -15,14 +22,85 @@ if (
 	userToken !== "" &&
 	userToken !== "undefined"
 ) {
+	document.addEventListener("DOMContentLoaded", async function () {
+		getUsersAndCards();
+	});
 	let modal = document.getElementById("modal");
 	//on récupère le bouton pour faire apparaître le modal
 	document
 		.getElementById("floating-button")
-		.addEventListener("click", function () {
+		.addEventListener("click", async function () {
+			await getUsersAndCards();
 			modal.style.display = "block";
 		});
 
+	setIntervalAsync(async () => {
+		const res = await fetch(`http://localhost:3000/users/${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const data = await res.json();
+
+		let newRequests = data.amountofnewrequests;
+		let newActive = data.amountofnewactive;
+		let newCompleted = data.amountofnewcompleted;
+		let totalNewTrades = newRequests + newActive + newCompleted;
+		if (totalNewTrades > 0) {
+			document.getElementById("little!").style.display = "flex";
+		} else {
+			document.getElementById("little!").style.display = "none";
+		}
+		if (newActive > 0) {
+			document.getElementById("little!active").style.display = "flex";
+		} else {
+			document.getElementById("little!active").style.display = "none";
+		}
+		if (newRequests > 0) {
+			document.getElementById("little!requests").style.display = "flex";
+		} else {
+			document.getElementById("little!requests").style.display = "none";
+		}
+		if (newCompleted > 0) {
+			document.getElementById("little!completed").style.display = "flex";
+		} else {
+			document.getElementById("little!completed").style.display = "none";
+		}
+
+		document.getElementById("little!").innerHTML = `${totalNewTrades}`;
+		document.getElementById("little!active").innerHTML = `${newActive}`;
+		document.getElementById("little!requests").innerHTML = `${newRequests}`;
+		document.getElementById("little!completed").innerHTML = `${newCompleted}`;
+
+		if (newCompleted > 0) {
+			let completedTrades = await getTrades();
+			if (completedTrades[newCompleted - 1].senderId != id) {
+				isCardAppearing = true;
+				showCard(completedTrades[newCompleted - 1].senderCardId);
+				const res = await fetch(
+					`http://localhost:3000/decrementnewcompleted/${id}`,
+					{
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+						},
+					}
+				);
+			}
+		}
+	}, 3000);
+	setInterval(() => {
+		if (isCardAppearing) {
+			document.querySelectorAll(".accept").forEach((appear) => {
+				appear.classList.add("deadgebutton");
+			});
+		} else {
+			document.querySelectorAll(".accept").forEach((appear) => {
+				appear.classList.remove("deadgebutton");
+			});
+		}
+	}, 50);
 	//le modal disparaît si on clique sur la croix
 	document.querySelector("span").addEventListener("click", function () {
 		modal.style.display = "none";
@@ -51,7 +129,6 @@ if (
 			}
 		});
 	};
-	loadCharacters();
 
 	let cardChoose = document.getElementById("cardchoose");
 	let usersChoose = document.getElementById("userschoose");
@@ -68,18 +145,6 @@ if (
 		const userId = await userData.id;
 		return userId;
 	}
-	/*
-	const res = await fetch(`http://localhost:3000/users`, {
-		method: "PUT",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			istrading: false,
-			cardtradingid: 0,
-		}),
-	});
-	*/
 
 	async function acceptTrade(tradeId) {
 		const response = await fetch(`http://localhost:3000/trades/${tradeId}`, {
@@ -163,6 +228,7 @@ if (
 			data = await res.json();
 			getTrades();
 		}
+		await getUsersAndCards();
 	}
 
 	async function declineTrade(tradeId) {
@@ -173,6 +239,7 @@ if (
 			},
 		});
 		data = await res.json();
+		await getUsersAndCards();
 		getTrades();
 	}
 
@@ -233,6 +300,10 @@ if (
 		if (pendingtradesData.length === 0) {
 			pendingtradesString = `<h2>You have no pending trades</h2>`;
 		}
+		let acceptclass = "accept.deadgebutton";
+		if (!isCardAppearing) {
+			acceptclass = "accept";
+		}
 		activetradesData.reverse().forEach((trade) => {
 			let receiverCardName = "None";
 			let receiverCardRarity = "";
@@ -240,7 +311,7 @@ if (
 				receiverCardName = trade.receiverCard.name;
 				receiverCardRarity = trade.receiverCard.rarity;
 			}
-			let receiverClass = "user";
+			let receiverClass = "receive";
 			if (trade.receiver.id == id) {
 				if (trade.receiverCard === null) {
 					receiverClass = "receiver";
@@ -273,7 +344,7 @@ if (
 			if (trade.status == "Awaiting confirmation" && trade.sender.id == id) {
 				activetradesString = `${activetradesString}
 									<div class="buttons">
-										<button id="accept${trade.id}" class="accept">Accept</button>
+										<button id="accept${trade.id}" class="${acceptclass}">Accept</button>
 										<button id="decline${trade.id}" class="decline">Decline</button>
 									</div>
 								</div>`;
@@ -341,7 +412,7 @@ if (
 			let receiverClass = "receive";
 			if (trade.receiver.id == id) {
 				if (trade.receiverCard === null) {
-					receiverClass = "receiver";
+					receiverClass = "receiverPending";
 				} else {
 					receiverClass = "normalreceiver";
 				}
@@ -393,6 +464,9 @@ if (
 		document.querySelectorAll(".accept").forEach((button) => {
 			button.addEventListener("click", async function () {
 				let tradeId = button.id.slice(6);
+				if (currenttab == 1) {
+					isCardAppearing = true;
+				}
 				await acceptTrade(tradeId);
 			});
 		});
@@ -455,17 +529,19 @@ if (
 						istrading: true,
 					}),
 				});
+				getUsersAndCards();
 				getTrades();
 			});
 		});
+		return completedtradesData;
 	}
 
 	async function showCard(cardId) {
 		await setAsyncTimeout(() => cardAppear(cardId), 500);
-		console.log("showing card");
 	}
 
 	async function cardAppear(cardId) {
+		isCardAppearing = true;
 		let response = await fetch(`http://localhost:3000/cards/${cardId}`, {
 			method: "GET",
 			headers: {
@@ -482,7 +558,6 @@ if (
 		cardObject.image = await hpListCharacter[0].image;
 		cardObject.slug = await hpListCharacter[0].slug;
 		let showCard = "";
-		console.log(cardObject);
 		//on fait apparaître la carte sans les boutons supprimer et favori
 		cardObject.isnew = "cardbooster";
 		showCard = ` <div id="${cardObject.rarity}" class="card cardbooster appear">  
@@ -499,6 +574,7 @@ if (
 
 		document.getElementById("tradingCardContainer").innerHTML = showCard;
 		await setAsyncTimeout(() => {
+			isCardAppearing = false;
 			document.getElementById("tradingCardContainer").innerHTML = "";
 		}, 2400);
 	}
@@ -509,20 +585,20 @@ if (
 			return user.id !== id;
 		});
 		let allCards = Object.values(await getAllCards(id));
-		await Promise.all(
-			allCards.map(async (card) => {
-				let cardObject = card;
-				let hpListCharacter = hpList.filter((element) => {
-					return element.name == cardObject.name;
-				});
-				cardObject.actor = await hpListCharacter[0].actor;
-				cardObject.house = await hpListCharacter[0].house;
-				cardObject.image = await hpListCharacter[0].image;
-				cardObject.slug = await hpListCharacter[0].slug;
-				cardObject.isnew = "no";
-				fullCards.push(cardObject);
-			})
-		);
+		await loadCharacters();
+		allCards.map((card) => {
+			let cardObject = card;
+			let hpListCharacter = hpList.filter((element) => {
+				return element.name == cardObject.name;
+			});
+			cardObject.actor = hpListCharacter[0].actor;
+			cardObject.house = hpListCharacter[0].house;
+			cardObject.image = hpListCharacter[0].image;
+			cardObject.slug = hpListCharacter[0].slug;
+			cardObject.isnew = "no";
+			fullCards.push(cardObject);
+		});
+
 		let cardString = ` <option value="" selected disabled hidden>Choose card here.</option>
 `;
 
@@ -540,20 +616,20 @@ if (
 `;
 		allUsers.forEach((user, i) => {
 			let isactive = "";
-			if (user.isactive) {
+			let current = new Date();
+			current = current.toISOString();
+			const start = new Date(user.last_active).getTime();
+			const end = new Date(current).getTime();
+			const milliseconds = Math.abs(end - start).toString();
+			if (milliseconds < 1000000) {
 				isactive = "Active";
 			} else {
 				isactive = "Inactive";
 			}
-			let istrading = "";
-			if (user.isactive) {
-				istrading = "Trading";
-			} else {
-				istrading = "Not trading";
-			}
+
 			//itération à travers la liste des cartes
 			userString = `${userString}
-                                <option value="${i}">${user.name}, ${isactive}, ${istrading}</option>
+                                <option value="${i}">${user.name}, ${isactive}</option>
                                 `;
 		}); //on va créer une option dans la liste par carte
 		usersChoose.innerHTML = userString; //on ajoute le string au code html
@@ -577,13 +653,6 @@ if (
 		}
 	});
 	//on fait apparaître le modal lorsqu'on clique sur le bouton
-	document
-		.getElementById("floating-button")
-		.addEventListener("click", async function () {
-			modal.style.display = "block";
-			//on va chercher la lis te des cartes de l'utilisateur pet on la met dans une liste pour que l'utilisateur puisse en choisir une
-			getUsersAndCards();
-		});
 
 	async function getAllUsers() {
 		const res = await fetch("http://localhost:3000/users", {
@@ -634,22 +703,17 @@ if (
 			}
 			document.getElementById("showCard").innerHTML = showCard;
 			let cardId = fullCards[cardValue].id;
-			const res = await fetch(`http://localhost:3000/users/${id}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					istrading: true,
-					cardtradingid: cardId,
-				}),
-			});
 		});
 	document.getElementById("submitcard").classList.add("deadgebutton");
 	document
 		.getElementById("submitExchange")
 		.addEventListener("click", function (e) {
 			e.preventDefault();
+			document.getElementById("submitExchange").classList.add("deadgebutton");
+			cardchoose.classList.remove("common");
+			cardchoose.classList.remove("rare");
+			cardchoose.classList.remove("mythical");
+			cardchoose.classList.remove("legendary");
 			let cardValue = cardChoose.value;
 			let userValue = usersChoose.value;
 			let cardId = fullCards[cardValue].id;
@@ -663,14 +727,14 @@ if (
 			let popup = document.querySelector(".popup");
 			popup.innerHTML = `<h1>Trade request to ${allUsers[userValue].name} sent</h1>`;
 			popup.classList.add("show");
-
+			isChosenCard = false;
+			isChosenUser = false;
 			setTimeout(() => {
 				getUsersAndCards();
 				popup.classList.remove("show");
 				popup.classList.add("hide");
 				cardChoose.classList.remove("deadgebutton");
 				usersChoose.classList.remove("deadgebutton");
-				document.getElementById("submitcard").classList.remove("deadgebutton");
 			}, 1800);
 			setTimeout(() => {
 				popup.classList.remove("hide");
@@ -678,6 +742,7 @@ if (
 			}, 3000);
 		});
 	document.getElementById("submitExchange").classList.add("deadgebutton");
+
 	async function doTrade(cardId, userID) {
 		await fetch(`http://localhost:3000/trades/`, {
 			method: "POST",
@@ -702,6 +767,7 @@ if (
 		getTrades();
 	}
 } else {
+	document.getElementById("floating-button").classList.add("deadgebutton");
 	//on récupère le bouton pour faire apparaître le modal
 	document
 		.getElementById("floating-button")
@@ -731,7 +797,7 @@ tabContents[0].style.display = "block";
 
 // Add click event listener to each tab button
 tabButtons.forEach((button, index) => {
-	button.addEventListener("click", () => {
+	button.addEventListener("click", async () => {
 		// Remove active class from all tab buttons
 		tabButtons.forEach((btn) => {
 			btn.classList.remove("active");
@@ -744,8 +810,44 @@ tabButtons.forEach((button, index) => {
 		tabContents.forEach((content) => {
 			content.style.display = "none";
 		});
-
+		currenttab = index;
 		// Show the corresponding tab content based on the index
 		tabContents[index].style.display = "block";
+
+		switch (index) {
+			case 1:
+				const res1 = await fetch(`http://localhost:3000/users/${id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						amountofnewactive: 0,
+					}),
+				});
+				break;
+			case 2:
+				const res2 = await fetch(`http://localhost:3000/users/${id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						amountofnewrequests: 0,
+					}),
+				});
+				break;
+			case 3:
+				const res3 = await fetch(`http://localhost:3000/users/${id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						amountofnewcompleted: 0,
+					}),
+				});
+				break;
+		}
 	});
 });

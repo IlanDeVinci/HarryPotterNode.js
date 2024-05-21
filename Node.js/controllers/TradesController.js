@@ -1,6 +1,25 @@
 const prisma = require("../config/prisma");
 
 class TradesController {
+	async decrementnewcompleted(req, res) {
+		const id = parseInt(req.params.id);
+		try {
+			const user = await prisma.user.update({
+				where: {
+					id: id,
+				},
+				data: {
+					amountofnewcompleted: {
+						decrement: 1,
+					},
+				},
+			});
+			return res.status(201).send(user);
+		} catch (error) {
+			return res.status(500).send({ message: error.message });
+		}
+	}
+
 	async house(req, res) {
 		try {
 			const posts = await prisma.card.findMany({
@@ -101,6 +120,18 @@ class TradesController {
 			const post = await prisma.trade.create({
 				data: req.body,
 			});
+
+			const user = await prisma.user.update({
+				where: {
+					id: req.body.receiverId,
+				},
+				data: {
+					amountofnewrequests: {
+						increment: 1,
+					},
+				},
+			});
+
 			return res.status(201).send(post);
 		} catch (error) {
 			return res.status(500).send({ message: error.message });
@@ -134,6 +165,76 @@ class TradesController {
 			});
 			if (post === null) {
 				return res.status(404).send("Trade not found");
+			}
+			console.log(post.senderId, post.receiverId, req.body.status);
+			const sender = post.senderId;
+			const receiver = post.receiverId;
+			if (req.body.status === "completed") {
+				const user = await prisma.user.updateMany({
+					where: {
+						OR: [
+							{
+								id: sender,
+							},
+							{
+								id: receiver,
+							},
+						],
+					},
+					data: {
+						amountofnewcompleted: {
+							increment: 1,
+						},
+					},
+				});
+			}
+			if (req.body.status === "cancelled") {
+				const user = await prisma.user.update({
+					where: {
+						id: sender,
+					},
+					data: {
+						amountofnewrequests: {
+							increment: 1,
+						},
+					},
+				});
+			}
+			if (req.body.status === "active") {
+				const user = await prisma.user.update({
+					where: {
+						id: receiver,
+					},
+					data: {
+						amountofnewactive: {
+							increment: 1,
+						},
+					},
+				});
+			}
+			if (req.body.status === "Awaiting confirmation") {
+				const user = await prisma.user.update({
+					where: {
+						id: sender,
+					},
+					data: {
+						amountofnewactive: {
+							increment: 1,
+						},
+					},
+				});
+			}
+			if (req.body.status === "pending") {
+				const user = await prisma.user.update({
+					where: {
+						id: receiver,
+					},
+					data: {
+						amountofnewrequests: {
+							increment: 1,
+						},
+					},
+				});
 			}
 			return res.status(201).send(post);
 		} catch (error) {

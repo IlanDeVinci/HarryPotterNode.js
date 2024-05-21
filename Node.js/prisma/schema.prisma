@@ -22,11 +22,12 @@ model User {
   last_booster DateTime
   last_active DateTime @default(now())
   pity Int @default(0)
-  istrading Boolean @default(false)
-  cardtradingid Int @default(0)
   cards Card[]
   sentTrades Trade[] @relation("TradeSender")
   receivedTrades Trade[] @relation("TradeReceiver")
+  amountofnewrequests Int @default(0)
+  amountofnewactive Int @default(0)
+  amountofnewcompleted Int @default(0)
   }
 
 model Card {

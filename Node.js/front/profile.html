@@ -18,42 +18,49 @@
 	</head>
 	<body>
 		<header>
-			<a
-				href="index.html"
-				class="logo"
-				id="logobi">
-				<img
-					class="logoimg"
-					src="images/picmix.com_968628.png"
-					alt="" />
-			</a>
-			<h1 id="title">Profile</h1>
 			<div>
-				<form
-					class="logregi"
-					id="register"
-					action="register.html">
-					<input
-						type="submit"
-						value="Register" />
-				</form>
-				<form
-					class="logregi"
-					id="login"
-					action="login.html">
-					<input
-						type="submit"
-						value="Login" />
-				</form>
-				<form
-					class="logregi"
-					id="logout"
-					action="#">
-					<input
-						type="submit"
-						value="Logout" />
-					<p id="welcomeusername"></p>
-				</form>
+				<a
+					href="index.html"
+					class="logo"
+					id="logobi">
+					<img
+						class="logoimg"
+						src="images/picmix.com_968628.png"
+						alt="" />
+				</a>
+			</div>
+
+			<div>
+				<h1 id="title">Profile</h1>
+			</div>
+			<div>
+				<div>
+					<form
+						class="logregi"
+						id="register"
+						action="register.html">
+						<input
+							type="submit"
+							value="Register" />
+					</form>
+					<form
+						class="logregi"
+						id="login"
+						action="login.html">
+						<input
+							type="submit"
+							value="Login" />
+					</form>
+					<form
+						class="logregi"
+						id="logout"
+						action="#">
+						<input
+							type="submit"
+							value="Logout" />
+						<p id="welcomeusername"></p>
+					</form>
+				</div>
 			</div>
 		</header>
 		<div class="popup">
@@ -74,10 +81,35 @@
 					<span class="close">&times;</span>
 				</div>
 				<div class="tab_buttons">
-					<button class="tab-button active">New Trade</button>
-					<button class="tab-button">Active Trades</button>
-					<button class="tab-button">Trade Requests</button>
-					<button class="tab-button">Past Trades</button>
+					<div class="relative">
+						<button class="tab-button active">New Trade</button>
+					</div>
+					<div class="relative">
+						<button class="tab-button">Active Trades</button>
+						<h2
+							id="little!active"
+							class="exclamationsmall">
+							!
+						</h2>
+					</div>
+					<div class="relative">
+						<button class="tab-button">Trade Requests</button>
+						<h2
+							id="little!requests"
+							class="exclamationsmall">
+							!
+						</h2>
+					</div>
+
+					<div class="relative">
+						<button class="tab-button">Past Trades</button>
+						<h2
+							id="little!completed"
+							class="exclamationsmall">
+							!
+						</h2>
+					</div>
+				</div>
 				</div>
 				<div class="tab-content">
 					<div class="tab">
@@ -141,7 +173,7 @@
 					<div class="bar"></div>
 					<div class="bar"></div>
 				</div>
-				<ul
+				<div
 					class="menu"
 					id="menu">
 					<a
@@ -164,7 +196,7 @@
 						id="profile"
 						>Profile</a
 					>
-				</ul>
+				</div>
 			</div>
 		</nav>
 
@@ -175,14 +207,22 @@
 				class="cardContainer"></div>
 		</main>
 
-		<footer>&copy; 2024 Slapilou Harry Potter Card Website</footer>
+		<footer>&copy; 2024 Ilan Harry Potter Trading Card Website</footer>
 
-		<button
+		<div
 			class="floating-button"
 			id="floating-button">
-			Trading
-		</button>
-
+			<h1>Trading</h1>
+			<h2
+				id="little!"
+				class="exclamation">
+				!
+			</h2>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/set-interval-async"></script>
+		<script
+			type="module"
+			src="https://unpkg.com/delay"></script>
 		<script src="profileLoad.js"></script>
 		<script src="loggedIn.js"></script>
 		<script src="modalTrade.js"></script>

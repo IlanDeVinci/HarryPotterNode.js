@@ -16,7 +16,6 @@ const getProfile = async () => {
 		.toString()
 		.replace(/T/, " ")
 		.replace(/\..+/, "");
-	console.log(data);
 	document.querySelector("#character").innerHTML = `
         <h1>${data.name}</h1>
         <div class="normalimgcontainer">
