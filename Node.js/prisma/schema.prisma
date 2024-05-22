@@ -21,7 +21,7 @@ model User {
   created_at DateTime @default(now())
   last_booster DateTime
   last_active DateTime @default(now())
-  pity Int @default(0)
+  pity Int @default(22)
   cards Card[]
   sentTrades Trade[] @relation("TradeSender")
   receivedTrades Trade[] @relation("TradeReceiver")

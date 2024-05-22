@@ -12,3 +12,18 @@ burgerIcon.addEventListener("click", function () {
 	document.getElementById("archive").classList.toggle("hide");
 	document.getElementById("profile").classList.toggle("hide");
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+	if (window.location.pathname === "/front/profile.html") {
+		document.getElementById("profile").classList.add("active");
+	}
+	if (window.location.pathname === "/front/mycards.html") {
+		document.getElementById("mycards").classList.add("active");
+	}
+	if (window.location.pathname === "/front/collection.html") {
+		document.getElementById("archive").classList.add("active");
+	}
+	if (window.location.pathname === "/front/index.html") {
+		document.getElementById("home").classList.add("active");
+	}
+});

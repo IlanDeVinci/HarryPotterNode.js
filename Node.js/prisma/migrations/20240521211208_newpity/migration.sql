@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `user` MODIFY `pity` INTEGER NOT NULL DEFAULT 22;
