@@ -102,7 +102,7 @@ document.getElementById("submit").addEventListener("click", async function (e) {
 			const data = await response.json();
 			const error = data.error;
 			if (error === undefined) {
-				window.location.href = "/front/login.html";
+				window.location.href = "/login.html";
 				document.getElementById("submitted").innerHTML =
 					"You have submitted the form. You can now log in.";
 			} else {
@@ -134,7 +134,7 @@ document.getElementById("submit").addEventListener("click", async function (e) {
 				localStorage.setItem("last_active", current);
 				const token = data.token;
 				localStorage.setItem("token", token);
-				window.location.href = "/front/mycards.html";
+				window.location.href = "/mycards.html";
 				document.getElementById("submitted").innerHTML = "You are logged in.";
 			} else {
 				document.getElementById(

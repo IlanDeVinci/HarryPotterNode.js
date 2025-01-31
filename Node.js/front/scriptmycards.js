@@ -2,7 +2,6 @@
 let boosterCd = true;
 document.querySelector("#boostercontainer").classList.add("deadgebutton");
 document.querySelector("#booster").classList.add("deadgebutton");
-import delay from "../node_modules/delay/index.js";
 const setAsyncTimeout = (cb, timeout = 0) =>
 	new Promise((resolve) => {
 		setTimeout(() => {
@@ -130,7 +129,7 @@ async function checkBoosterCd() {
 }
 
 if (localStorage.getItem("token") === null) {
-	window.location.href = "/front/register.html";
+	window.location.href = "/register.html";
 } else {
 	getProfile();
 }

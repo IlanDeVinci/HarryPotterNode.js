@@ -210,8 +210,8 @@ if (
 				showCard(senderCardId);
 			}
 			if (
-				window.location.pathname == "/front/mycards.html" ||
-				window.location.pathname == "/front/profile.html"
+				window.location.pathname == "/mycards.html" ||
+				window.location.pathname == "/profile.html"
 			) {
 				getProfile();
 			}

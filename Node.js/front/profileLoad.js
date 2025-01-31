@@ -208,7 +208,7 @@ const loadCharacters = async () => {
 };
 
 if (localStorage.getItem("token") === null) {
-	window.location.href = "/front/register.html";
+	window.location.href = "/register.html";
 } else {
 	getProfile();
 }

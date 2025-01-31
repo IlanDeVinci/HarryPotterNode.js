@@ -54,11 +54,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 const logout = async (event) => {
 	localStorage.removeItem("token");
-	window.location.href = "/front/index.html";
+	window.location.href = "/index.html";
 };
 
 document.getElementById("logout").addEventListener("submit", async (event) => {
 	event.preventDefault();
 	localStorage.removeItem("token");
-	window.location.href = "/front/index.html";
+	window.location.href = "/index.html";
 });
